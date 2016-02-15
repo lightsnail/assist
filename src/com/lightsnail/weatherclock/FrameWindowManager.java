@@ -4,6 +4,7 @@ import java.util.List;
 
 import android.R.mipmap;
 import android.annotation.SuppressLint;
+import android.app.ActionBar.LayoutParams;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningTaskInfo;
 import android.content.ComponentName;
@@ -12,6 +13,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.Display;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -19,14 +21,16 @@ import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
 import android.view.View.OnTouchListener;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.baidu.tts.d.l;
 import com.lightsnail.specturm.VisualizerView;
+import com.lightsnail.utils.AppLog;
 
 @SuppressLint("NewApi") public class FrameWindowManager {
 
-	private View						mFrameview			= null;
+	private View						mFrameLayout			= null;
 	private VisualizerView				mVisualizerView			= null;
 	private float						mTouchStartX		= 0;
 	private float						mTouchStartY		= 0;
@@ -40,6 +44,8 @@ import com.lightsnail.specturm.VisualizerView;
 	private final static int			ALPHATIME			= 3 * 1000;
 	private OnClickListener mClickListener;
 	private int mStatusBarHeight;
+	private int mScreenWidth;
+	private int mScreenHeight;
 
 	/**
 	 * 获得状态栏的高度
@@ -61,11 +67,15 @@ import com.lightsnail.specturm.VisualizerView;
 	    }
 	    return statusHeight;
 	}
+	@SuppressWarnings("deprecation")
 	public  FrameWindowManager(Context context,OnClickListener l){
 		this.mContext = context;
 		mClickListener= l;
 		mStatusBarHeight = getStatusHeight(context);;
-		
+		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+		Display  display = wm.getDefaultDisplay();
+		mScreenWidth = display.getWidth();
+		mScreenHeight = display.getHeight();
 		
 		initData();
 		initView(context);
@@ -96,9 +106,30 @@ import com.lightsnail.specturm.VisualizerView;
 	}
 
 	private void initView(final Context context) {
-		mFrameview = View.inflate(context, R.layout.frame_view, null);
-		mVisualizerView =  (VisualizerView)mFrameview.findViewById(R.id.frame_view_icon);
-		mFrameview.setOnTouchListener(new OnTouchListener() {
+		mFrameLayout = View.inflate(context, R.layout.frame_view, null);
+		mVisualizerView =  (VisualizerView)mFrameLayout.findViewById(R.id.frame_view_icon);
+		mVisualizerView.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				// TODO Auto-generated method stub
+
+				isActivityRunning(context);
+				Toast.makeText(context, "   Hello   光能蜗牛  ", Toast.LENGTH_SHORT).show();
+			}
+		});
+		mVisualizerView.setOnLongClickListener(new OnLongClickListener() {
+		
+		@Override
+		public boolean onLongClick(View arg0) {
+			// TODO Auto-generated method stub
+//		gosub(mContext);
+			mOperateMove = true;
+			Toast.makeText(context, "   Hello   光能蜗牛 onLongClick ", Toast.LENGTH_SHORT).show();
+			return true;
+		}
+	});
+		mVisualizerView.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				changeAlpha();
 				mLastX = event.getRawX();
@@ -106,14 +137,14 @@ import com.lightsnail.specturm.VisualizerView;
 //				AppLog.d("mLastX  "+mLastX+" & "+mLasty);
 				switch (event.getAction()) {
 				case MotionEvent.ACTION_DOWN:
-					mTouchStartX = event.getX() ;
-					mTouchStartY = event.getY() ;
-//					AppLog.d("event.getX()  "+event.getX()+" & "+event.getY());
+					mTouchStartX = event.getRawX() - mWindLayoutParams.x;
+					mTouchStartY = event.getRawY() - mStatusBarHeight - mWindLayoutParams.y;
+//					mTouchStartX = event.getX() ;
+//					mTouchStartY = event.getY() ;
 					updateViewPosition();
 					break;
 				case MotionEvent.ACTION_MOVE:
 					if(mOperateMove){
-						
 						updateViewPosition();
 					}
 					break;
@@ -124,41 +155,6 @@ import com.lightsnail.specturm.VisualizerView;
 					mOperateMove = false;
 					break;
 				}
-				return false;
-			}
-		});
-		mFrameview.setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-//				Toast.makeText(context, "   Hello   光能蜗牛  ", Toast.LENGTH_SHORT).show();
-				isActivityRunning(context);
-//				mClickListener.onClick(v);
-//				Runtime runtime = Runtime.getRuntime();
-//				try {
-//					runtime.exec("input keyevent " + KeyEvent.KEYCODE_BACK);
-//				} catch (IOException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-//                PowerManager pm = (PowerManager)mContext.getSystemService(Context.POWER_SERVICE);
-//                pm.goToSleep(SystemClock.uptimeMillis());
-//				new Thread(new Runnable() {
-//					
-//					@Override
-//					public void run() {
-//						
-//						new Instrumentation().sendKeyDownUpSync(KeyEvent.KEYCODE_BACK);
-//					}
-//				}).start();
-			}
-		});
-		mFrameview.setOnLongClickListener(new OnLongClickListener() {
-			
-
-			@Override
-			public boolean onLongClick(View arg0) {
-				mOperateMove = true;
-				gosub(mContext);
 				return false;
 			}
 		});
@@ -175,18 +171,24 @@ import com.lightsnail.specturm.VisualizerView;
 		  mIndex %= list.size();
 		  for (int i = 0; i < list.size(); i++) {
 			  RunningTaskInfo l = list.get(i);
-//			   Log.d("debug", "  l.numActivities = "+l.numActivities + ",, mIndex = "+mIndex+ ",,"+"l.topActivity = "+l.topActivity);
 			 if(i == mIndex){
+			   Log.d("debug", "  l.numActivities = "+l.numActivities + ",, mIndex = "+mIndex+ ",,"+"l.topActivity = "+l.topActivity);
 
-				 
-				  Intent intent = new Intent();
-//				  intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//				  intent.setAction(Intent.ACTION_MAIN);
-				  intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
-				  intent.setComponent(l.topActivity);
-				  mContext.startActivity(intent);
+			   try {
+				   
+					  Intent intent = new Intent();
+//					  intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//					  intent.setAction(Intent.ACTION_MAIN);
+					  intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK);
+					  intent.setComponent(l.topActivity);
+					  mContext.startActivity(intent);
 
-				 mLastComponentActivity = l.topActivity;
+					 mLastComponentActivity = l.topActivity;
+					 
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+	
 			 }
 		  }
 		// Log.d("debug", "activityName[i] = "+activityName[0]);
@@ -231,7 +233,12 @@ import com.lightsnail.specturm.VisualizerView;
 	private void updateViewPosition() {
 		mWindLayoutParams.x = (int) (mLastX - mTouchStartX);
 		mWindLayoutParams.y = (int) (mLasty - mTouchStartY);
-		mManager.updateViewLayout(mFrameview, mWindLayoutParams);
+//		if(mWindLayoutParams.x <   0){
+//			mWindLayoutParams.x  = 0;
+//		}else if(mWindLayoutParams.x > mScreenWidth - mFrameLayout.getWidth() - 0){
+//			mWindLayoutParams.x  = mScreenWidth - mFrameLayout.getWidth() - 0;
+//		}
+		mManager.updateViewLayout(mFrameLayout, mWindLayoutParams);
 	}
 
 	public void setWendu(String wendu) {
@@ -240,19 +247,19 @@ import com.lightsnail.specturm.VisualizerView;
 	private void show() {
 		mManager = (WindowManager) mContext.getSystemService("window");
 		mWindLayoutParams = new WindowManager.LayoutParams();
-		mWindLayoutParams.type = 2002;
+		mWindLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR  ;
 		mWindLayoutParams.flags |= 8;
 		mWindLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-//		mWindLayoutParams.x = 40;
-//		mWindLayoutParams.y = 40;
+		mWindLayoutParams.x = 40;
+		mWindLayoutParams.y = 40;
 		mWindLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.format = 1;
-		mManager.addView(mFrameview, mWindLayoutParams);
+		mManager.addView(mFrameLayout, mWindLayoutParams);
 	}
 
 	private void dismmis() {
-		mManager.removeView(mFrameview);
+		mManager.removeView(mFrameLayout);
 	}
 
 

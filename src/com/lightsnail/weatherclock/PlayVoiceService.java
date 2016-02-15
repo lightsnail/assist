@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,8 +83,14 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 			}
 
 			@Override
-			public void onWeatherWendu(String wendu) {
-				mFrameWindowManager.setWendu(wendu);
+			public void onWeatherWendu(final String wendu) {
+				
+					new Handler(Looper.getMainLooper()).post(new Runnable() {
+						@Override
+						public void run() {
+							mFrameWindowManager.setWendu(wendu);
+						}
+					});
 			}});
 		PlayVoiceService.ISPLAYVOICE = ZidooSharedPrefsUtil.getValue(this, "isPalyVoice", true);
 		init();
