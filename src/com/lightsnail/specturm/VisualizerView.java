@@ -2,19 +2,25 @@ package com.lightsnail.specturm;
 
 import java.util.ArrayList;
 
+import android.R.color;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RectF;
+import android.graphics.Paint.Style;
 import android.media.audiofx.Visualizer;
 import android.media.audiofx.Visualizer.OnDataCaptureListener;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
-@SuppressLint("NewApi") public class VisualizerView extends View{
+@SuppressLint("NewApi") public class VisualizerView extends TextView {
 
 	private int mHeight;
 	private int mWidth;
@@ -34,8 +40,12 @@ import android.view.View;
 	private int mStaticCount = 0;
 	
 	private float mMax = (float) ((float) Math.log(127) );
-	private int mColorWhite;
-	private int mColorBlack;
+	private int mMainColor;
+//	private int mMainColorHalf;
+	
+	private int mBackColor;
+	private int	mTextColor;
+	private boolean	mNormalShow;
 	
 	public VisualizerView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -63,8 +73,16 @@ import android.view.View;
 			this.mPaint= new Paint();
 			this.mPaint.setColor(Color.WHITE);
 			this.mPaint.setAntiAlias(true);
-			this.mColorWhite =Color.parseColor("#eeffff00");
-			this.mColorBlack = Color.parseColor("#66000000");
+			int alpha = 238;
+			int red = 0;
+			int green = 255;
+			int blue = 60;
+
+			
+			this.mMainColor =Color.argb(alpha, red, green, blue);
+//			this.mMainColorHalf =Color.argb((int) (alpha/1.5f), red, green, blue);
+			this.mTextColor = Color.argb(255, (red+100)%255, (green+100)%255, (blue+100)%255);
+			this.mBackColor = Color.parseColor("#66000000");
 			float count = mModelSize ;
 			for (int i = 0; i <count; i++) {
 				float angel = (float) ((i + 0.5f)/count*Math.PI* 2 );
@@ -78,6 +96,7 @@ import android.view.View;
 			
 			mVisualizer = new Visualizer(0);
 			mVisualizer.setDataCaptureListener(new OnDataCaptureListener() {
+
 
 				@Override
 				public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate) {
@@ -104,12 +123,16 @@ import android.view.View;
 		            	if(mStaticCount < 10){
 //							Log.d("debug", "---quite--"+mStaticCount );
 		            		invalidate();
+		            	}else if(mStaticCount < 20){
+		            		mNormalShow = true;
+		            		invalidate();
 		            	}
 		            	if(mStaticCount > 1000){
 		            		mStaticCount = 10;
 		            	}
 						
 		            }else{
+	            		mNormalShow = false;
 		            	mStaticCount = 0;
 		            	invalidate();
 		            }
@@ -118,7 +141,14 @@ import android.view.View;
 			}, Visualizer.getMaxCaptureRate(), false, true);
 			mVisualizer.setCaptureSize(mCaptureSize);
 			mVisualizer.setEnabled(true);
+			setTextSize(10);
+			setTextColor(mTextColor);
+			setGravity(Gravity.CENTER);
 		}
+	}
+	public void setWendu(String wendu) {
+
+		setText(wendu+"°");
 	}
 	class Vector {
 
@@ -178,42 +208,50 @@ import android.view.View;
 	@Override
 	protected void onDraw(Canvas canvas) {
 		// TODO Auto-generated method stub
-		super.onDraw(canvas);
 
-		mPaint.setColor(mColorBlack);
+		mPaint.setColor(mBackColor);
 		canvas.drawCircle(mCenterX, mCenterY, mCenterX*mBackR, mPaint);
-		mPaint.setColor(mColorWhite);
-		canvas.drawCircle(mCenterX, mCenterY, mCenterX*mR, mPaint);
+		
+		if(mNormalShow){
+			
+			
+			mPaint.setColor(mMainColor);
+//			mPaint.setStyle(Style.STROKE);
+			canvas.drawCircle(mCenterX, mCenterY, mCenterX*mR, mPaint);
+//			mPaint.setStyle(Style.FILL);
+//			canvas.drawArc(new RectF(mCenterX-mCenterX*mR, mCenterY-mCenterY*mR,mCenterX+mCenterX*mR, mCenterY+mCenterY*mR), 0, 360, false, mPaint);
+			super.onDraw(canvas);
+			
+		}else{
+			
+			mPaint.setColor(mMainColor);
+			canvas.drawCircle(mCenterX, mCenterY, mCenterX*mR, mPaint);
+//			super.onDraw(canvas);
+			ArrayList<Float> list = new ArrayList<Float>();
+			for (int i = 0; i < mModel.length; i++) {
+				list.add(mModel[i]*1f/(mMax));
+			}
 
-		ArrayList<Float> list = new ArrayList<Float>();
-		for (int i = 0; i < mModel.length; i++) {
-			list.add(mModel[i]*1f/(mMax));
-		}
+//			for (int i = 0; i < mArrayList.size()/2; i++) {
+//				list.add((float) Math.random());
+//			}
+			for (int i = 0; i < mArrayList.size()/2; i++) {
+				Line line = mArrayList.get(i);
+				line.draw(canvas,list.get(i));
+			}
+			int index = 0 ;
+			for (int i = mArrayList.size() - 1; i >= mArrayList.size()/2; i--) {
 
-//		for (int i = 0; i < mArrayList.size()/2; i++) {
-//			list.add((float) Math.random());
-//		}
-		for (int i = 0; i < mArrayList.size()/2; i++) {
-			Line line = mArrayList.get(i);
-			line.draw(canvas,list.get(i));
+				Line line = mArrayList.get(i);
+				line.draw(canvas,list.get(index));
+				index++;
+			}
+//			removeCallbacks(mRunable);
+//			postDelayed(mRunable, 50);
 		}
-		int index = 0 ;
-		for (int i = mArrayList.size() - 1; i >= mArrayList.size()/2; i--) {
-
-			Line line = mArrayList.get(i);
-			line.draw(canvas,list.get(index));
-			index++;
-		}
-//		removeCallbacks(mRunable);
-//		postDelayed(mRunable, 50);
+	
 	}
 
-	Runnable mRunable = new Runnable() {
-		
-		@Override
-		public void run() {
-			invalidate();
-		}
-	};
+
 
 }

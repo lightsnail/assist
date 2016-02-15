@@ -5,5 +5,8 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
+	<classpathentry exported="true" kind="lib" path="libs/ztool.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/galaxy_lite.jar"/>
+	<classpathentry exported="true" kind="lib" path="libs/com.baidu.tts_2.1.1.20151118_1e57d7d_beta.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

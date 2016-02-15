@@ -4,4 +4,6 @@ public interface OnWeatherStringListenner {
 
 	void onWeatherString(String text);
 
+	void onWeatherWendu(String wendu);
+
 }

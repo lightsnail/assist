@@ -9,5 +9,4 @@
         android:layout_height="55dp"
         android:focusable="false"
         android:focusableInTouchMode="false" />
-
 </RelativeLayout>

@@ -63,12 +63,6 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	public void onCreate() {
 		AppLog.d("bob  PlayVoiceService  init");
 		mContext = this;
-		mX_WeatherManager = new X_WeatherManager(mContext,new OnWeatherStringListenner(){
-
-			@Override
-			public void onWeatherString(String text) {
-				mWeatherString  = text;
-			}});
 		mFrameWindowManager = new FrameWindowManager(mContext,new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -77,8 +71,20 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 //				 serviceIntent.putExtra("voice", text) ;
 //				 startService(serviceIntent);
 				 speak(mWeatherString);
+				 
 			}
 		});
+		mX_WeatherManager = new X_WeatherManager(mContext,new OnWeatherStringListenner(){
+
+			@Override
+			public void onWeatherString(String text) {
+				mWeatherString  = text;
+			}
+
+			@Override
+			public void onWeatherWendu(String wendu) {
+				mFrameWindowManager.setWendu(wendu);
+			}});
 		PlayVoiceService.ISPLAYVOICE = ZidooSharedPrefsUtil.getValue(this, "isPalyVoice", true);
 		init();
 		ZidooJarPermissions.initZidooJar(this);

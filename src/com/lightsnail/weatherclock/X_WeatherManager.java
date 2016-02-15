@@ -61,6 +61,7 @@ public class X_WeatherManager {
 							text += "风力："+weatherInfo.fengli + ",";
 							text += "湿度："+weatherInfo.shidu + ",";
 							l.onWeatherString(text);
+							l.onWeatherWendu(weatherInfo.wendu);
 						}
 					});
 					
