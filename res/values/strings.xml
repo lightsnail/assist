@@ -5,4 +5,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
 	<string name = "click_voice">点击播报</string>
+	<string name = "acc_listen_service_name">listen</string>
+	<string name = "acc_description">accessbility_config</string>
+	
 </resources>

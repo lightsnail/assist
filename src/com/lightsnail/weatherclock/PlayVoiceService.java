@@ -7,8 +7,10 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
@@ -55,6 +57,24 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	private X_WeatherManager mX_WeatherManager;
 	protected String mWeatherString = "暂无数据";
 
+	private HomeBroadcastReceiver homePressReceiver = new HomeBroadcastReceiver();
+
+	public class HomeBroadcastReceiver extends BroadcastReceiver {
+	final String SYSTEM_DIALOG_REASON_KEY = "reason"; 
+	final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey"; 
+	@Override 
+	public void onReceive(Context context, Intent intent) { 
+		String action = intent.getAction(); 
+		if(action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+			String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY); 
+			if(reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
+				//implements your controlling logic.} } }}
+				mFrameWindowManager.resetTaskIndex();
+			}
+			AppLog.d("HomeBroadcastReceiver");
+		}
+	}
+}
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
@@ -63,6 +83,11 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	@Override
 	public void onCreate() {
 		AppLog.d("bob  PlayVoiceService  init");
+
+	final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);  
+	
+	registerReceiver(homePressReceiver, homeFilter); 
+
 		mContext = this;
 		mFrameWindowManager = new FrameWindowManager(mContext,new OnClickListener() {
 			@Override
@@ -141,6 +166,9 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 		try {
 			mNetStatusTool.release();
 			mSpeechSynthesizer.release();
+			if(homePressReceiver != null) {    
+		       unregisterReceiver(homePressReceiver);  
+			 }
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
