@@ -48,7 +48,6 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" 
-            
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
             >
             <intent-filter>

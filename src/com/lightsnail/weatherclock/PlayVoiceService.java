@@ -6,17 +6,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 
+import android.accessibilityservice.AccessibilityService;
 import android.app.Service;
 import android.content.BroadcastReceiver;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.os.Binder;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.os.Message;
 import android.view.View;
+import android.view.View.AccessibilityDelegate;
 import android.view.View.OnClickListener;
 import android.widget.Toast;
 
@@ -58,38 +63,43 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	protected String mWeatherString = "暂无数据";
 
 	private HomeBroadcastReceiver homePressReceiver = new HomeBroadcastReceiver();
-
+	private ServiceConnection	mServiceConnection;
+    public  LocalBinder mBinder = new LocalBinder(this);
 	public class HomeBroadcastReceiver extends BroadcastReceiver {
-	final String SYSTEM_DIALOG_REASON_KEY = "reason"; 
-	final String SYSTEM_DIALOG_REASON_HOME_KEY = "homekey"; 
-	@Override 
-	public void onReceive(Context context, Intent intent) { 
-		String action = intent.getAction(); 
-		if(action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
-			String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY); 
-			if(reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
-				//implements your controlling logic.} } }}
-				mFrameWindowManager.resetTaskIndex();
+		final String	SYSTEM_DIALOG_REASON_KEY		= "reason";
+		final String	SYSTEM_DIALOG_REASON_HOME_KEY	= "homekey";
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String action = intent.getAction();
+			if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
+				String reason = intent.getStringExtra(SYSTEM_DIALOG_REASON_KEY);
+				if (reason != null && reason.equals(SYSTEM_DIALOG_REASON_HOME_KEY)) {
+					// implements your controlling logic.} } }}
+					mFrameWindowManager.resetTaskIndex();
+				}
+				AppLog.d("HomeBroadcastReceiver");
 			}
-			AppLog.d("HomeBroadcastReceiver");
 		}
 	}
-}
 	@Override
 	public IBinder onBind(Intent intent) {
-		return null;
+		 AppLog.d("onBind() "+this);
+//		 Intent serviceIntent = new Intent(mContext, MyAccessibilityService.class);
+//		 startService(serviceIntent);
+		return mBinder;
 	}
 
 	@Override
 	public void onCreate() {
-		AppLog.d("bob  PlayVoiceService  init");
+		 AppLog.d("PlayVoiceService onCreate() "+this);
 
 	final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);  
 	
 	registerReceiver(homePressReceiver, homeFilter); 
 
 		mContext = this;
-		mFrameWindowManager = new FrameWindowManager(mContext,new OnClickListener() {
+		mFrameWindowManager = new FrameWindowManager(mContext,this,new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 //				 Intent serviceIntent = new Intent(mContext, PlayVoiceService.class);
@@ -166,6 +176,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 		try {
 			mNetStatusTool.release();
 			mSpeechSynthesizer.release();
+			unbindService(mServiceConnection);
 			if(homePressReceiver != null) {    
 		       unregisterReceiver(homePressReceiver);  
 			 }
@@ -401,4 +412,5 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSynthesizeStart  arg0 = " + arg0);
 	}
+
 }
