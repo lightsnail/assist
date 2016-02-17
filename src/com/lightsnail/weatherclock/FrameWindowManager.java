@@ -213,7 +213,7 @@ import com.lightsnail.utils.VoiceTool;
 		mWindLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR  ;
 		mWindLayoutParams.flags |= 8;
 		mWindLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-		mWindLayoutParams.x = mScreenWidth - 40;
+		mWindLayoutParams.x = mScreenWidth  *3/5;
 		mWindLayoutParams.y = mScreenHeight *3/5;
 		mWindLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
