@@ -5,10 +5,13 @@ import java.util.List;
 import java.util.Set;
 
 import com.lightsnail.utils.AppLog;
+import com.lightsnail.weatherclock.MyAccessibilityService;
+import com.lightsnail.weatherclock.PlayVoiceService;
 import com.zidoo.custom.sound.ZidooHomeKeyTool;
 import com.zidoo.custom.sound.ZidooHomeKeyTool.HomeKeyListener;
 
 import android.R.color;
+import android.accessibilityservice.AccessibilityService;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RecentTaskInfo;
@@ -351,8 +354,12 @@ import android.widget.TextView;
 	private ComponentName  mLastComponentActivity;
 	
 	public   boolean goPreTask(Context cxt ) {
-		goNextTask(mContext);
-		 mIndex = 0;
+		if(mPlayVoiceService.mBinder.getAccessibilityService() != null){
+			mPlayVoiceService.mBinder.getAccessibilityService().performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+		}else{
+			goNextTask(mContext);
+			mIndex = 0;
+		}
 		return false;
 	}
 
@@ -596,6 +603,7 @@ import android.widget.TextView;
 	}
 
 	private boolean	mHasLongClicked;
+	private PlayVoiceService	mPlayVoiceService;
 	public void setLongClickFlag(boolean fl) {
 		mHasLongClicked = fl;
 	}
@@ -606,6 +614,10 @@ import android.widget.TextView;
 
 	public void resetTaskIndex() {
 		mIndex = 0;
+	}
+
+	public void setService(PlayVoiceService service) {
+		this.mPlayVoiceService = service;
 	}
 
 

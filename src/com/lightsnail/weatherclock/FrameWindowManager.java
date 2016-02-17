@@ -38,6 +38,7 @@ import com.lightsnail.utils.VoiceTool;
 	private int mScreenWidth;
 	private int mScreenHeight;
 	private boolean	mCanPlayVoice = true;
+	private PlayVoiceService	mPlayVoiceService;
 
 	/**
 	 * 获得状态栏的高度
@@ -60,8 +61,9 @@ import com.lightsnail.utils.VoiceTool;
 	    return statusHeight;
 	}
 	@SuppressWarnings("deprecation")
-	public  FrameWindowManager(Context context,OnClickListener l){
+	public  FrameWindowManager(Context context,PlayVoiceService playVoiceService, OnClickListener l){
 		this.mContext = context;
+		this.mPlayVoiceService = playVoiceService;
 		mClickListener= l;
 		mStatusBarHeight = getStatusHeight(context);;
 		WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
@@ -104,6 +106,7 @@ import com.lightsnail.utils.VoiceTool;
 	private void initView(final Context context) {
 		mFrameLayout = View.inflate(context, R.layout.frame_view, null);
 		mVisualizerView =  (VisualizerView)mFrameLayout.findViewById(R.id.frame_view_icon);
+		mVisualizerView.setService(mPlayVoiceService);
 		mVisualizerView.setOnClickListener(new OnClickListener() {
 			
 			@Override
@@ -154,14 +157,14 @@ import com.lightsnail.utils.VoiceTool;
 		});
 		mVisualizerView.setOnLongClickListener(new OnLongClickListener() {
 		
-		@Override
-		public boolean onLongClick(View arg0) {
-			// TODO Auto-generated method stub
-			mVisualizerView.setLongClickFlag(true);
-			Toast.makeText(context, "   Hello   光能蜗牛 onLongClick ", Toast.LENGTH_SHORT).show();
-			return true;
-		}
-	});
+			@Override
+			public boolean onLongClick(View arg0) {
+				// TODO Auto-generated method stub
+				mVisualizerView.setLongClickFlag(true);
+				Toast.makeText(context, "   Hello   光能蜗牛 onLongClick ", Toast.LENGTH_SHORT).show();
+				return true;
+			}
+		});
 		mVisualizerView.setOnTouchListener(new OnTouchListener() {
 			public boolean onTouch(View v, MotionEvent event) {
 				changeAlpha();
