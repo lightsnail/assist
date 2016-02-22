@@ -4,6 +4,7 @@ import com.lightsnail.utils.AppLog;
 
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
+import android.annotation.SuppressLint;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.view.accessibility.AccessibilityEvent;
 
 import com.lightsnail.utils.AppLog;
 import com.lightsnail.utils.app.AppUtils;
+import com.lightsnail.utils.string.StringUtil;
 
 public class MyAccessibilityService extends AccessibilityService {
 
@@ -39,7 +41,7 @@ public class MyAccessibilityService extends AccessibilityService {
 			 @Override
 				public void onServiceConnected(ComponentName name, IBinder service) {
 
-				 AppLog.d("onServiceConnected "+name );
+				 AppLog.d("MyAccessibilityService---onServiceConnected "  );
 				 AppLog.d("onServiceConnected MyAccessibilityService.this = "+MyAccessibilityService.this );
 					 mPlayVoiceService = ((LocalBinder) service).getService();
 					 ((LocalBinder) service).setMyAccessibilityService(MyAccessibilityService.this);
@@ -49,7 +51,8 @@ public class MyAccessibilityService extends AccessibilityService {
 				}
 				@Override
 				public void onServiceDisconnected(ComponentName name) {
-					 AppLog.d("onServiceDisconnected "+name );
+
+					 AppLog.d("MyAccessibilityService---onServiceDisconnected "  );
 					mPlayVoiceService = null;
 //					if (mPowerTimeService != null) {
 //						mBindServiceListener.disconnected();
@@ -60,15 +63,17 @@ public class MyAccessibilityService extends AccessibilityService {
 			bindService(new Intent(this, PlayVoiceService.class),
 					mServiceConnection, Context.BIND_AUTO_CREATE);
 	}
-	@Override
+	@SuppressLint("NewApi") @Override
 	public void onAccessibilityEvent(AccessibilityEvent arg0) {
 //		AppLog.d(arg0.toString());
 		AppLog.d(arg0.getPackageName().toString()+"");
+//		AppLog.d(arg0.getText().toString()+"");
 		switch (arg0.getEventType()) {
 			case AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED:
-				String textMessage = arg0.getText().toString();
+				String textMessage = StringUtil.stringFilter(arg0.getText().toString())  ;
+				AppLog.d("textMessage = "+textMessage);
 				String packName = arg0.getPackageName().toString();
-				if(textMessage != null && textMessage.length() > 0 && !textMessage.equals(mLastMessage)){
+				if(textMessage != null && !textMessage.isEmpty() && !textMessage.equals(mLastMessage)){
 					
 					 mLastMessage = textMessage;
 					 Intent serviceIntent = new Intent(getApplicationContext(), PlayVoiceService.class);
@@ -151,6 +156,7 @@ public class MyAccessibilityService extends AccessibilityService {
 	public boolean onUnbind(Intent intent) {
 		// TODO Auto-generated method stub
 		AppLog.d("------------onUnbind()");
+		unbindService(mServiceConnection);
 		return super.onUnbind(intent);
 	}
 

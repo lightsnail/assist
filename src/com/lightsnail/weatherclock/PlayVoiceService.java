@@ -5,8 +5,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Calendar;
 
+import android.R.integer;
 import android.accessibilityservice.AccessibilityService;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
@@ -14,6 +18,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.media.AudioManager;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.Handler;
@@ -60,11 +65,12 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	private final static int	PLAYVOICETIME						= 250;
 	private FrameWindowManager mFrameWindowManager;
 	private X_WeatherManager mX_WeatherManager;
-	protected String mWeatherString = "暂无数据";
+	public static String mWeatherString = "暂无数据";
 
 	private HomeBroadcastReceiver homePressReceiver = new HomeBroadcastReceiver();
 	private ServiceConnection	mServiceConnection;
     public  LocalBinder mBinder = new LocalBinder(this);
+	public MainActivity mMainActivity;
 	public class HomeBroadcastReceiver extends BroadcastReceiver {
 		final String	SYSTEM_DIALOG_REASON_KEY		= "reason";
 		final String	SYSTEM_DIALOG_REASON_HOME_KEY	= "homekey";
@@ -94,29 +100,28 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	public void onCreate() {
 		 AppLog.d("PlayVoiceService onCreate() "+this);
 
+			 
 	final IntentFilter homeFilter = new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS);  
 	
 	registerReceiver(homePressReceiver, homeFilter); 
 
 		mContext = this;
-		mFrameWindowManager = new FrameWindowManager(mContext,this,new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-//				 Intent serviceIntent = new Intent(mContext, PlayVoiceService.class);
-//				 serviceIntent.setAction("android.voice.play");
-//				 serviceIntent.putExtra("voice", text) ;
-//				 startService(serviceIntent);
-				 speak(mWeatherString);
-				 
-			}
-		});
+		mFrameWindowManager = new FrameWindowManager(mContext,this );
+		AlarmUtil.setAlarm(mContext);
+		
 		mX_WeatherManager = new X_WeatherManager(mContext,new OnWeatherStringListenner(){
 
 			@Override
-			public void onWeatherString(String text) {
-				mWeatherString  = text;
+			public void onWeatherString(final String text) {
+				new Handler(Looper.getMainLooper()).postDelayed (new Runnable() {
+							@Override
+							public void run() {
+								AppLog.d("onWeatherString() "+text);
+								mWeatherString  = text;
+								speak(mWeatherString);
+							}
+				} ,5*1000);
 			}
-
 			@Override
 			public void onWeatherWendu(final String wendu) {
 				
@@ -159,7 +164,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 				try {
 					int result = mSpeechSynthesizer.speak(((String) msg.obj));
 					if (result < 0) {
-						AppLog.d("bob   = " + "error,please look up error code in doc or URL:http://yuyin.baidu.com/docs/tts/122 ");
+						AppLog.d("result   = " +result +  ",,,error,please look up error code in doc or URL:http://yuyin.baidu.com/docs/tts/122 ");
 					}
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -229,6 +234,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 			e.printStackTrace();
 		}
 		try {
+			
 			mHandler.removeMessages(PLAYVOICE); 
 			if (isInitFinish && PlayVoiceService.ISPLAYVOICE && mSpeechSynthesizer != null && speak != null && !speak.trim().equals("")) {
 				
@@ -272,9 +278,10 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 		this.mSpeechSynthesizer = SpeechSynthesizer.getInstance();
 		this.mSpeechSynthesizer.setContext(mContext);
 		this.mSpeechSynthesizer.setSpeechSynthesizerListener(this);
-//		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "9");
-//		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "6");
-//		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "4");
+		
+		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_VOLUME, "9");
+		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "4");
+		mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "7");
 
 		this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_TEXT_MODEL_FILE, mSampleDirPath + "/" + TEXT_MODEL_NAME);
 		this.mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_TTS_SPEECH_MODEL_FILE, mSampleDirPath + "/" + SPEECH_FEMALE_MODEL_NAME);
@@ -381,6 +388,18 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	public void onSpeechFinish(String arg0) {
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSpeechFinish  arg0 = " + arg0);
+		AppLog.d("onSpeechFinish = "+arg0);	
+		AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+		 audioManager.abandonAudioFocus(aoAudioFocusChangeListener);
+//		audioManager.requestAudioFocus(new AudioManager.OnAudioFocusChangeListener(){
+//			 public void onAudioFocusChange(int focusChange) {
+//				 if (focusChange == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+//				 }
+//			 };
+//		 } , AudioManager.STREAM_MUSIC,    AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK);
+//		Intent intent = new Intent("com.android.music.musicservicecommand");
+//		intent.putExtra("command", "togglepause");
+//		mContext.sendBroadcast(intent);
 	}
 
 	@Override
@@ -388,9 +407,40 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSpeechProgressChanged  arg0 = " + arg0);
 	}
-
+	AudioManager.OnAudioFocusChangeListener aoAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener(){
+		 public void onAudioFocusChange(int focusChange) {
+			 if (focusChange == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
+			 }
+		 };
+	 };
 	@Override
 	public void onSpeechStart(String arg0) {
+		
+		AppLog.d("onSpeechStart = "+arg0)		;
+
+		 AudioManager audioManager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
+
+		 /*
+		  * 下面介绍一下AudioManager的几个常量
+AUDIOFOCUS_REQUEST_GRANTED   永久获取媒体焦点（播放音乐）
+AUDIOFOCUS_GAIN_TRANSIENT  暂时获取焦点 适用于短暂的音频
+AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK Duck我们应用跟其他应用共用焦点 我们播放的时候其他音频会降低音量
+
+		  */
+		 int result = audioManager.requestAudioFocus( 
+					 aoAudioFocusChangeListener,
+					 AudioManager.STREAM_MUSIC,   
+					 AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+				 );
+
+//		Intent i = new Intent("com.android.music.musicservicecommand");
+//		i.putExtra("command", "togglepause");
+//		mContext.sendBroadcast(i);
+		
+//		  Intent freshIntent = new Intent();
+//		  freshIntent.setAction("com.android.music.musicservicecommand.pause");
+//		  freshIntent.putExtra("command", "pause");
+//		  sendBroadcast(freshIntent);
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSpeechStart  arg0 = " + arg0);
 	}
@@ -405,12 +455,17 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	public void onSynthesizeFinish(String arg0) {
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSynthesizeFinish  arg0 = " + arg0);
+
 	}
 
 	@Override
 	public void onSynthesizeStart(String arg0) {
 		// TODO Auto-generated method stub
 		// System.out.println("bob  onSynthesizeStart  arg0 = " + arg0);
+	}
+
+	public void setActivity(MainActivity mainActivity) {
+		this.mMainActivity = mainActivity;
 	}
 
 }

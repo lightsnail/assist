@@ -3,6 +3,7 @@ package com.lightsnail.weatherclock;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lightsnail.utils.AppLog;
 import com.lightsnail.utils.XMLNode;
 
 
@@ -121,6 +122,7 @@ public class WeatherInfo {
 	}
 	public void fill(XMLNode ccnode) {
 
+		AppLog.d("fill："+ccnode.getNodeName());
 		if(ccnode.getNodeName() .equals("city")){
 			city = ccnode.getNodeValue();
 		}else if(ccnode.getNodeName() .equals("updatetime")){
@@ -149,7 +151,7 @@ public class WeatherInfo {
 			setYesterday(ccnode.getChildList());
 		}else if(ccnode.getNodeName().equals("forecast")){
 			setForecast(ccnode.getChildList());
-		}else if(ccnode.getNodeName().equals("zhiShus")){
+		}else if(ccnode.getNodeName().equals("zhishus")){
 			setZhiShus(ccnode.getChildList());
 		}
 	}
@@ -309,7 +311,7 @@ public class WeatherInfo {
 			}
 		}
 	}
-	class Zhishus{
+	public static class Zhishus{
 
 		List<Zhishu> mZhishus = new ArrayList<Zhishu>();
 		public void setZhiShus(List<XMLNode> childList) {
@@ -326,12 +328,15 @@ public class WeatherInfo {
 				}
 			}			
 		}
-		class Zhishu{
+		public static class Zhishu{
 
 			public String detail;
 			public String value;
 			public String name;
 			
+		}
+		public List<Zhishu> getZhishuS() {
+			return mZhishus;			
 		}
 
 

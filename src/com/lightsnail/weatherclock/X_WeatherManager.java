@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -13,6 +14,8 @@ import com.lightsnail.utils.AppLog;
 import com.lightsnail.utils.HttpConnectionUtil;
 import com.lightsnail.utils.XMLAnalysisManager;
 import com.lightsnail.utils.XMLType;
+import com.lightsnail.weatherclock.WeatherInfo.Zhishus;
+import com.lightsnail.weatherclock.WeatherInfo.Zhishus.Zhishu;
 
 public class X_WeatherManager {
 
@@ -52,14 +55,29 @@ public class X_WeatherManager {
 					 XMLAnalysisManager.getXMLNode(mContext, weatherPath, XMLType.SDCARD,new OnWeatherPaserListenner() {
 						@Override
 						public void onFinish(WeatherInfo weatherInfo) {
-							String text;
-							text = "";
-							text += "你有一条天气信息!";
-							text += weatherInfo.city + ",";
-							text += weatherInfo.updatetime + ",";
-							text += "温度："+weatherInfo.wendu + ",";
+							String  text;
+							text = "现在播报今天的天气信息：";
+							text +=  "城市："+weatherInfo.city + ",";
+							text +=  "发布时间："+weatherInfo.updatetime + ",";
 							text += "风力："+weatherInfo.fengli + ",";
 							text += "湿度："+weatherInfo.shidu + ",";
+							text += "温度："+weatherInfo.wendu + ",";
+							
+							Zhishus sZhishus = weatherInfo.mZhiShus;
+							if(sZhishus != null){
+								
+								List<Zhishu>  zsLis = sZhishus.getZhishuS();
+								for (int i = 0; i < zsLis.size(); i++) {
+									if( i !=2 || i != 10 ){
+										continue;
+									}
+									Zhishu zhishu = zsLis.get(i);
+									text += zhishu.name+ ","+zhishu.value +","+zhishu.detail+"";
+								}
+							}
+						
+							AppLog.d("weather："+text);
+							
 							l.onWeatherString(text);
 							l.onWeatherWendu(weatherInfo.wendu);
 						}

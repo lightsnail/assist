@@ -12,6 +12,7 @@ public class AppUtils {
 	public static void startAPPFromPackageName(Context context,String packagename){
 		Intent intent=isexit(context,packagename); 
 	       if(intent!=null){  
+//	    	   intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TOP|intent.FLAG_ACTIVITY_NEW_TASK);
 	  	     context.startActivity(intent);  
 	       }
 	}

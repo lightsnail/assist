@@ -271,6 +271,7 @@ public class XMLAnalysisManager {
 		if(stack.size() <= 0) {
 			throw new Exception("XML文件为空");
 		}
+		AppLog.d("finish decode：");
 		 l.onFinish(mWeatherInfo);
 		return stack.pop();
 	}

@@ -1,17 +1,12 @@
 package com.lightsnail.specturm;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import com.lightsnail.utils.AppLog;
-import com.lightsnail.weatherclock.MyAccessibilityService;
-import com.lightsnail.weatherclock.PlayVoiceService;
-import com.zidoo.custom.sound.ZidooHomeKeyTool;
-import com.zidoo.custom.sound.ZidooHomeKeyTool.HomeKeyListener;
-
-import android.R.color;
 import android.accessibilityservice.AccessibilityService;
+import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RecentTaskInfo;
@@ -23,29 +18,33 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
-import android.content.res.ColorStateList;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PointF;
-import android.graphics.RectF;
-import android.graphics.Paint.Style;
 import android.graphics.drawable.Drawable;
 import android.media.audiofx.Visualizer;
 import android.media.audiofx.Visualizer.OnDataCaptureListener;
+import android.os.Handler;
+import android.os.IBinder;
+import android.os.Message;
+import android.os.RemoteException;
+import android.provider.ContactsContract.CommonDataKinds.Event;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.BounceInterpolator;
-import android.view.animation.Interpolator;
 import android.view.animation.OvershootInterpolator;
-import android.widget.Button;
 import android.widget.TextView;
 
-@SuppressLint("NewApi") public class VisualizerView extends TextView {
+import com.lightsnail.utils.AppLog;
+import com.lightsnail.utils.VoiceTool;
+import com.lightsnail.weatherclock.FrameWindowManager;
+import com.lightsnail.weatherclock.PlayVoiceService;
+
+@SuppressLint("NewApi") 
+public class VisualizerView extends TextView {
 
 	private int mHeight;
 	private int mWidth;
@@ -64,6 +63,8 @@ import android.widget.TextView;
 	private Visualizer mVisualizer;
 	private int mStaticCount = 0;
 	
+	private int mStatusBarHeight;
+	
 	private float mMax = (float) ((float) Math.log(127) );
 	private int mMainColor;
 //	private int mMainColorHalf;
@@ -71,9 +72,12 @@ import android.widget.TextView;
 	private int mBackColor;
 	private int	mTextColor;
 	private boolean	mNormalShow;
-	private ZidooScroller mZidooScroller;
+	private ZidooScroller mZidooScrollerX;
+	private ZidooScroller mZidooScrollerY;
 	private Context	mContext;
 	private List<String>	mHomeList;
+	private int mCompareX;
+	private int mCompareY;
 	
 	public VisualizerView(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
@@ -83,12 +87,34 @@ import android.widget.TextView;
 	public VisualizerView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		this.mContext = context;
+		mStatusBarHeight = getStatusHeight(context);;
 	}
 
 	public VisualizerView(Context context) {
 		super(context);
 		this.mContext = context;
 	}
+	/**
+	 * 获得状态栏的高度
+	 * 
+	 * @param context
+	 * @return
+	 */
+	public static int getStatusHeight(Context context) {
+	 
+	    int statusHeight = -1;
+	    try {
+	        Class  clazz = Class.forName("com.android.internal.R$dimen");
+	        Object object = clazz.newInstance();
+	        int height = Integer.parseInt(clazz.getField("status_bar_height")
+	                .get(object).toString());
+	        statusHeight = context.getResources().getDimensionPixelSize(height);
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return statusHeight;
+	}
+	
 	/** 
 	* 获得属于桌面的应用的应用包名称 
 	* @return 返回包含所有包名的字符串列表 
@@ -120,6 +146,8 @@ import android.widget.TextView;
 			
 			this.mWidth = getWidth();
 			this.mHeight = getHeight();;
+			this.mCompareX = mWidth/5;
+			this.mCompareY = mHeight/5;
 			this.mCenterX = mWidth/2;
 			this.mCenterY = mHeight/2;
 			this.mPaint= new Paint();
@@ -193,9 +221,13 @@ import android.widget.TextView;
 			}, Visualizer.getMaxCaptureRate(), false, true);
 			mVisualizer.setCaptureSize(mCaptureSize);
 			mVisualizer.setEnabled(true);
-			mZidooScroller = new ZidooScroller(mContext, 0, 1, 
-					 new BounceInterpolator()  
-					//new OvershootInterpolator ()
+			mZidooScrollerX = new ZidooScroller(mContext, 0, 1, 
+					 new OvershootInterpolator()  
+					//new BounceInterpolator ()
+			);
+			mZidooScrollerY = new ZidooScroller(mContext, 0, 1, 
+					 new OvershootInterpolator()  
+					//new BounceInterpolator ()
 			);
 			setTextSize(10);
 			setTextColor(mTextColor);
@@ -203,6 +235,116 @@ import android.widget.TextView;
 
 		}
 	}    
+	public void OpenNotify() {
+		// TODO Auto-generated method stub
+		int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+		try {
+			Object service =mContext. getSystemService("statusbar");
+			Class<?> statusbarManager = Class
+					.forName("android.app.StatusBarManager");
+			Method expand = null;
+			if (service != null) {
+				if (currentApiVersion <= 16) {
+					expand = statusbarManager.getMethod("expand");
+				} else {
+					expand = statusbarManager
+							.getMethod("expandNotificationsPanel");
+				}
+				expand.setAccessible(true);
+				expand.invoke(service);
+			}
+
+		} catch (Exception e) {
+		}
+
+	}
+	public void showRecentlyAppPanel() {
+		Class serviceManagerClass;
+		try {
+			serviceManagerClass = Class.forName("android.os.ServiceManager");
+			Method getService = serviceManagerClass.getMethod("getService",
+					String.class);
+			IBinder retbinder = (IBinder) getService.invoke(
+					serviceManagerClass, "statusbar");
+			Class statusBarClass = Class.forName(retbinder
+					.getInterfaceDescriptor());
+			Object statusBarObject = statusBarClass.getClasses()[0].getMethod(
+					"asInterface", IBinder.class).invoke(null,
+					new Object[] { retbinder });
+			Method clearAll = statusBarClass.getMethod("toggleRecentApps");
+			clearAll.setAccessible(true);
+			clearAll.invoke(statusBarObject);
+			
+//			AppLog.d(ReflectUtils.printMethods(statusBarClass));; 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+	public void closeRecentlyAppPanel() {
+		Class serviceManagerClass;
+		try {
+			serviceManagerClass = Class.forName("android.os.ServiceManager");
+			Method getService = serviceManagerClass.getMethod("getService",
+					String.class);
+			IBinder retbinder = (IBinder) getService.invoke(
+					serviceManagerClass, "statusbar");
+			Class statusBarClass = Class.forName(retbinder
+					.getInterfaceDescriptor());
+			Object statusBarObject = statusBarClass.getClasses()[0].getMethod(
+					"asInterface", IBinder.class).invoke(null,
+					new Object[] { retbinder });
+			Method clearAll = statusBarClass.getMethod("collapsePanels");
+			clearAll.setAccessible(true);
+			clearAll.invoke(statusBarObject);
+			
+//			AppLog.d(ReflectUtils.printMethods(statusBarClass));; 
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		} catch (IllegalArgumentException e) {
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			e.printStackTrace();
+		} catch (InvocationTargetException e) {
+			e.printStackTrace();
+		} catch (RemoteException e) {
+			e.printStackTrace();
+		}
+	}
+		public void CloseNotify() {
+			// TODO Auto-generated method stub
+			int currentApiVersion = android.os.Build.VERSION.SDK_INT;
+			try {
+				Object service =mContext. getSystemService("statusbar");
+				Class<?> statusbarManager = Class
+						.forName("android.app.StatusBarManager");
+				Method collapsePanels = null;
+				if (service != null) {
+					if (currentApiVersion <= 16) {
+						collapsePanels = statusbarManager.getMethod("expand");
+					} else {
+						collapsePanels = statusbarManager
+								.getMethod("collapsePanels");
+					}
+					collapsePanels.setAccessible(true);
+					collapsePanels.invoke(service);
+				}
+
+			} catch (Exception e) {
+			}
+
+		}
 	/** 
      * 判断当前界面是否是桌面 
      */ 
@@ -222,90 +364,279 @@ import android.widget.TextView;
 	@Override
 	public void computeScroll() {
 		super.computeScroll();
-		if(mZidooScroller.computeOffset()){
+		boolean sx = mZidooScrollerX.computeOffset();
+		boolean sy = mZidooScrollerY.computeOffset();
+		
+		if(sx || sy){
 			invalidate();
 		}
 	}
 	PointF mTouchPointF = new PointF();
-	private float mHuaOffset = 0;
+	private float mOffsetX = 0;
+	private float mOffsetY = 0;
+	private boolean mNotityShowing;
+	private boolean mRecentlyAppShowing;
+	private boolean mCanClick = true; //是否可点击
+	private boolean mCanLongClick = true;//是否可长按
+	private boolean mClickActive = false;//点击激活
+	private boolean mLongClickActive = false;//长按激活
+	private int mTouchCount = 0;
+	private final int TOUCH_COUNT = 7;
+	private PointF mGloablePointF = new PointF();
 	@Override
 	public boolean onTouchEvent(MotionEvent event) {
 
+		Log.d("debug", "onTouchEvent = "+event.getAction() + ",,mLongClickActive = "+mLongClickActive+",," + "mCanLongClick = "+mCanLongClick + ",,mTOuchcCount = "+mTouchCount);
+		changeAlpha();
 		switch (event.getAction()) {
 			case MotionEvent.ACTION_DOWN:
+				mCanClick = true;
+				mCanLongClick  = true;
+				mClickActive = false;
+				mLongClickActive = false;
+				mTouchCount = 0;
 				mTouchPointF.x = event.getX();
 				mTouchPointF.y = event.getY();
+				
+				mGloablePointF.x = event.getRawX();
+				mGloablePointF.y = event.getRawY() - mStatusBarHeight ;
 			break;
 			case MotionEvent.ACTION_MOVE:
-				float mOffsetX = event.getX() - mTouchPointF.x;
-				float mOffsetY = event.getY() - mTouchPointF.y;
-				mTouchPointF.x = event.getX();
-				mTouchPointF.y = event.getY();
-			    if(mHasLongClicked){
+				
+				if(mLongClickActive){
+					mGloablePointF.x = event.getRawX();
+					mGloablePointF.y = event.getRawY() - mStatusBarHeight ;
+					mFrameWindowManager.updateViewPosition(mGloablePointF,mTouchPointF);
+				}
+
+				
+				  mOffsetX = event.getX() - mTouchPointF.x;
+				  mOffsetY = event.getY() - mTouchPointF.y;
+				  if(Math.abs(mOffsetX) >  mCompareX || Math.abs(mOffsetY) > mCompareY ){
+					  mCanClick = false;
+					  mCanLongClick = false;
+					  mHandler.removeMessages(TRT_LONG_CLICK_MESSAGE);
+				  }else{
+					  mTouchCount ++ ;
+				  }
+				  
+				  if(/*mTouchCount > TOUCH_COUNT &&*/  mCanLongClick && !mLongClickActive){
+//					  mLongClickActive = true;
+//					  mCanClick = false;
+					  mHandler.sendEmptyMessageDelayed(TRT_LONG_CLICK_MESSAGE, 600);
+				  }
+//				mTouchPointF.x = event.getX();
+//				mTouchPointF.y = event.getY();
+			    if(mLongClickActive){
+			    	mOffsetX = 0;
+			    	mOffsetY = 0;
+				} 
+			    {
+					float holdX = mOffsetX;
+					float holdY = mOffsetY;
 					
-				}else {
-					if(mZidooScroller.getCurrentPara() + (int) mOffsetX/2 > mWidth/5 ){	
-						mZidooScroller.setCurrentIndex(mWidth/5);
-						invalidate();
-					}else if( mZidooScroller.getCurrentPara()  + (int) mOffsetX/2 < -mWidth/5){
-						mZidooScroller.setCurrentIndex(-mWidth/5);
-						invalidate();
-					}else {
-
-						mZidooScroller.dragBy((int) mOffsetX/2);
-						invalidate();
+					if(Math.abs(holdX) > Math.abs(holdY) ){
+						if(mOffsetX > mCompareX ){	
+							mOffsetX = mCompareX;
+						}else if(mOffsetX < -mCompareX){
+							mOffsetX = -mCompareX;
+						}
+						mOffsetY = 0;
+					}else{
+						if(mOffsetY > mCompareX ){	
+							mOffsetY = mCompareX;
+						}else if(mOffsetY < -mCompareX){
+							mOffsetY = -mCompareX;
+						}
+						mOffsetX = 0;
 					}
+					mZidooScrollerX.setCurrentIndex(mOffsetX);
+					mZidooScrollerY.setCurrentIndex(mOffsetY);
+					
+					invalidate();
 				}
 
-				mHuaOffset =  mZidooScroller.getCurrentPara();
 			break;
+			
 			case MotionEvent.ACTION_UP:
+				if(!mLongClickActive && mCanClick /*&& mTouchCount < TOUCH_COUNT*/){
+					mClickActive = true;
+					goClick();
+				}
+				mHandler.removeMessages(TRT_LONG_CLICK_MESSAGE);
 				mTouchPointF.x = event.getX();
 				mTouchPointF.y = event.getY();
-				mZidooScroller.scrollToTargetIndex(0, 600);
+				mZidooScrollerX.scrollToTargetIndex(0, 600);
+				mZidooScrollerY.scrollToTargetIndex(0, 600);
 				postInvalidate();
-				if(mHuaOffset >= mWidth/6){
-					goNextTask(mContext);
-				}else if(mHuaOffset <= -mWidth/6){
+				if(mOffsetX >= mCompareX){
 					goPreTask(mContext);
+				}else if(mOffsetX <= -mCompareX){
+					goNextTask(mContext);
+				}else if(mOffsetY >= mCompareY){
+					goTopDown();
+				}else if(mOffsetY <= - mCompareY){
+					goBottomUp();
 				}
-				mHuaOffset = 0;
+			break;
+			case MotionEvent.ACTION_CANCEL:
 			break;
 
 			default:
 			break;
 		}
-		return super.onTouchEvent(event);
+		return true;
+	}
+	private final static int			ALPHATIME			= 3 * 1000;
+	private final static int			ALPHA				= 0;
+	private final static int			CAN_PLAY_VOICE				= 1;
+	private final static int			TRT_LONG_CLICK_MESSAGE				=2;
+	private boolean mCanPlayVoice = true;
+	Handler mHandler = new Handler() {
+
+		@Override
+		public void handleMessage(Message msg) {
+			switch (msg.what) {
+			case ALPHA:
+				setAlpha(0.75f);
+			break;
+			case CAN_PLAY_VOICE:
+				mCanPlayVoice = true;
+			break;
+			case TRT_LONG_CLICK_MESSAGE:
+				mLongClickActive = true;
+				AppLog.d("goLongClick");
+//				ObjectAnimator.ofFloat(VisualizerView.this, "scaleX", 1f,1.2f,1f);
+//				ObjectAnimator.ofFloat(VisualizerView.this, "scaleY", 1f,1.2f,1f);
+			break;
+			default:
+			break;
+			}
+		}
+	};
+	private void changeAlpha() {
+		setAlpha(1f);
+		mHandler.removeMessages(ALPHA);
+		mHandler.sendEmptyMessageDelayed(ALPHA, ALPHATIME);
+	}
+
+	
+	private void goClick() {
+		AppLog.d("goClick");
+		if(mCanPlayVoice){
+			mCanPlayVoice = false;
+//			Toast.makeText(context, "   Hello   光能蜗牛  ", Toast.LENGTH_SHORT).show();
+			int index = (int) (Math.random() * 6);
+			mHandler.removeMessages(CAN_PLAY_VOICE);
+			mHandler.sendEmptyMessageDelayed(CAN_PLAY_VOICE, 2000);
+			switch (index) {
+				case 0:
+
+					VoiceTool.getInstance(mContext).playVoice("101");
+				break;
+				case 1:
+
+					VoiceTool.getInstance(mContext).playVoice("102");
+
+				break;
+				case 2:
+					VoiceTool.getInstance(mContext).playVoice("101");
+
+				break;
+				case 3:
+					VoiceTool.getInstance(mContext).playVoice("102");
+				break;
+				case 4:
+					VoiceTool.getInstance(mContext).playVoice("103");
+
+				break;
+				case 5:
+					VoiceTool.getInstance(mContext).playVoice("104");
+				break;
+
+				default:
+				break;
+			}
+			
+			if(mPlayVoiceService.mBinder.getAccessibilityService() != null){
+				   mPlayVoiceService.mBinder.getAccessibilityService().performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+			 }else{
+//					mVisualizerView.resetTaskIndex();
+				   Intent intent = new Intent(Intent.ACTION_MAIN);
+			        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);// 注意
+			        intent.addCategory(Intent.CATEGORY_HOME);
+			        mContext.startActivity(intent);
+			 }
+		}
+	}
+
+	private void goOnLongClick() {
+		
+	}
+
+	private void goTopDown() {
+		AppLog.d("goTopDown");
+		if(mRecentlyAppShowing){
+//			if(mPlayVoiceService.mBinder.getAccessibilityService() != null){
+//				   mPlayVoiceService.mBinder.getAccessibilityService().performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
+//			 }
+			closeRecentlyAppPanel();
+			mRecentlyAppShowing = false;
+		}else{
+			OpenNotify();
+			mNotityShowing = true;
+		}
+	}
+
+	private void goBottomUp() {
+		AppLog.d("goBottomUp");
+		if(mNotityShowing ){
+			CloseNotify();
+			mNotityShowing = false;
+		}else{
+				CloseNotify();
+				showRecentlyAppPanel();
+				mRecentlyAppShowing = true;
+		}
 	}
 	private int mIndex = 0;
 	public   boolean goNextTask(Context cxt ) {
+		AppLog.d("goNextTask");
 //		ActivityManager activityManager = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
 //		  List<RunningTaskInfo> list = activityManager.getRunningTasks(100);
 
 		  List<RecentTag> list =  getRecentTaskInfos();
-//		  mIndex++;
-//		  mIndex %= list.size();
+		  if(mIndex+ 1 >= list.size()){
+			  mIndex = list.size() - 1;
+			  return false;
+		  }
+		  mIndex++;
 		  boolean isHome = isHome();
 		  for (int i = 0; i < list.size(); i++) {
-			  RecentTag l = list.get(i);
-			  if(isHome){
-					 if(i == 0){
-						 AppLog.d(l.info.baseIntent.toString());
-						 jump(l);
-					   break;
-					 }
-			  }else{
-					 if(i == 1){
+			 final RecentTag l = list.get(i);
+				 if(i == mIndex){
 					   AppLog.d(l.info.baseIntent.toString());
 					   switchTo(l);
+//					   AppUtils.startAPPFromPackageName(mContext, mContext.getPackageName());
+//					   mPlayVoiceService.mMainActivity.finish();
+//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.right_enter_in, R.anim.left_exit_out);
+//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.down_enter_in, R.anim.up_exit_out);
+
+//					   jump(l);
+
 					   break;
 					 }
-			  }
 		  }
+//		  if(isHome){
+//					 AppLog.d(l.info.baseIntent.toString());
+//					 jump(l);
+//				   break;
+//		  }else{
+//		  }
 		// Log.d("debug", "activityName[i] = "+activityName[0]);
 		// Log.d("debug", "componentName = "+componentName.getClassName());
 		
-		return false;
+		return true;
 	}
 
 	private boolean jump(RecentTag tag) {
@@ -319,16 +650,17 @@ import android.widget.TextView;
              Log.w("Recent", "Unable to launch recent task", e);
              return false;
          }
-         
+
+//		  Intent intent = new Intent();
+//		  intent.addCategory(Intent.CATEGORY_LAUNCHER);
+//		  intent.setAction(Intent.ACTION_MAIN);
+//		  intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK|intent.FLAG_ACTIVITY_CLEAR_TOP );
+//		  intent.setComponent(tag.intent.getComponent());
+//		  getContext().startActivity(intent);
 //		 try {
-//			  Intent intent = new Intent();
-//			  intent.addCategory(Intent.CATEGORY_LAUNCHER);
-//			  intent.setAction(Intent.ACTION_MAIN);
-//			  intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK|intent.FLAG_ACTIVITY_CLEAR_TOP );
-//			  intent.setComponent(tag.intent.getComponent());
-//			  mContext.startActivity(intent);
 //		} catch (Exception e) {
 //			// TODO: handle exception
+//			e.printStackTrace();
 //			return false;
 //		}
 		return true;
@@ -352,18 +684,38 @@ import android.widget.TextView;
 
 	}
 	private ComponentName  mLastComponentActivity;
-	
 	public   boolean goPreTask(Context cxt ) {
-		if(mPlayVoiceService.mBinder.getAccessibilityService() != null){
-			mPlayVoiceService.mBinder.getAccessibilityService().performGlobalAction(AccessibilityService.GLOBAL_ACTION_BACK);
-		}else{
-			goNextTask(mContext);
-			mIndex = 0;
-		}
-		return false;
+
+		AppLog.d("goPreTask");
+		
+		  List<RecentTag> list =  getRecentTaskInfos();
+		  if(mIndex- 1 <  0){
+			  mIndex = 0;
+			  return false;
+		  }
+		  mIndex--;
+//		  boolean isHome = isHome();
+		  for (int i = 0; i < list.size(); i++) {
+			 final RecentTag l = list.get(i);
+				 if(i == mIndex){
+					   AppLog.d(l.info.baseIntent.toString());
+					   switchTo(l);
+//					   AppUtils.startAPPFromPackageName(mContext, mContext.getPackageName());
+//					   mPlayVoiceService.mMainActivity.finish();
+//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.left_enter_in, R.anim.right_exit_out);
+//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.up_enter_in, R.anim.down_exit_out);
+
+					   
+//					   jump(l);
+					   break;
+					 }
+		  }
+		  
+		return true;
 	}
 
-	private static final int	MAX_RECENT_TASKS	= 5;
+	
+	private static final int	MAX_RECENT_TASKS	= 100;
 	private List<RecentTag> getRecentTaskInfos() {
 
         final Context context = mContext;
@@ -454,6 +806,7 @@ import android.widget.TextView;
             final ActivityManager am = (ActivityManager)
                     getContext().getSystemService(Context.ACTIVITY_SERVICE);
             am.moveTaskToFront(tag.info.id, ActivityManager.MOVE_TASK_WITH_HOME);
+
         } else if (tag.intent != null) {
             //task退出了的话，id为-1，则使用RecentTag中的Intent重新启动
             tag.intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
@@ -571,53 +924,45 @@ import android.widget.TextView;
 	float t30 = (float)Math.tan(Math.PI*2*30/360f);
 	private void drawCenterCircle(Canvas canvas) {
 
-		float offset = mZidooScroller.getCurrentPara();
-		float scale = (mWidth - Math.abs(offset))*1f/mWidth;
+		float offsetX = mZidooScrollerX.getCurrentPara();
+		float offsetY = mZidooScrollerY.getCurrentPara();
+		float scale = (mWidth - Math.abs(offsetX+offsetY))*1f/mWidth;
 		
-		mCenterPath.reset();
-		PointF pTop 		 = new PointF(offset+mCenterX  ,					 mCenterY -scale* mCenterY * mR);
-		PointF p_lt1_Control = new PointF(offset+mCenterX - mCenterX * mR * t30, mCenterY -scale* mCenterY * mR);
-		PointF p_lt2_Control = new PointF(offset+mCenterX - mCenterX * mR, 		 mCenterY -scale* mCenterY * mR * t30);
-		PointF pLeft 		 = new PointF(offset+mCenterX - mCenterX * mR, 		 mCenterY);
-		PointF p_lb1_Control = new PointF(offset+mCenterX - mCenterX * mR, 		 mCenterY +scale* mCenterY * mR * t30);
-		PointF p_lb2_Control = new PointF(offset+mCenterX - mCenterX * mR * t30, mCenterY +scale* mCenterY * mR);
-		PointF pBottom 	     = new PointF(offset+mCenterX, 						 mCenterY +scale* mCenterY * mR);
-		PointF p_rb1_Control = new PointF(offset+mCenterX + mCenterX * mR * t30, mCenterY +scale* mCenterY * mR);
-		PointF p_rb2_Control = new PointF(offset+mCenterX + mCenterX * mR, 		 mCenterY +scale* mCenterY * mR * t30);
-		PointF pRight 		 = new PointF(offset+mCenterX + mCenterX * mR, 		 mCenterY);
-		PointF p_rt1_Control = new PointF(offset+mCenterX + mCenterX * mR, 		 mCenterY -scale* mCenterY * mR * t30);
-		PointF p_rt2_Control = new PointF(offset+mCenterX + mCenterX * mR * t30, mCenterY -scale* mCenterY * mR);
-		mCenterPath.moveTo(pTop.x, pTop.y);
-//		mCenterPath.lineTo(p_lt1_Control.x, p_lt1_Control.y);
-//		mCenterPath.lineTo(p_lt2_Control.x, p_lt2_Control.y);
-//		mCenterPath.lineTo(pLeft.x, pLeft.y);
+//		mCenterPath.reset();
+//		PointF pTop 		 		= new PointF(offsetX+mCenterX  ,										 mCenterY -scale* mCenterY * mR);
+//		PointF p_lt1_Control = new PointF(offsetX+mCenterX - mCenterX * mR * t30, mCenterY -scale* mCenterY * mR);
+//		PointF p_lt2_Control = new PointF(offsetX+mCenterX - mCenterX * mR, 		 mCenterY -scale* mCenterY * mR * t30);
+//		PointF pLeft 		 		= new PointF(offsetX+mCenterX - mCenterX * mR, 		 mCenterY);
+//		PointF p_lb1_Control = new PointF(offsetX+mCenterX - mCenterX * mR, 		 mCenterY +scale* mCenterY * mR * t30);
+//		PointF p_lb2_Control = new PointF(offsetX+mCenterX - mCenterX * mR * t30, mCenterY +scale* mCenterY * mR);
+//		PointF pBottom 	     = new PointF(offsetX+mCenterX, 						 					mCenterY +scale* mCenterY * mR);
+//		PointF p_rb1_Control = new PointF(offsetX+mCenterX + mCenterX * mR * t30, mCenterY +scale* mCenterY * mR);
+//		PointF p_rb2_Control = new PointF(offsetX+mCenterX + mCenterX * mR, 		   mCenterY +scale* mCenterY * mR * t30);
+//		PointF pRight 		 	  = new PointF(offsetX+mCenterX + mCenterX * mR, 		  mCenterY);
+//		PointF p_rt1_Control   = new PointF(offsetX+mCenterX + mCenterX * mR, 		    mCenterY -scale* mCenterY * mR * t30);
+//		PointF p_rt2_Control   = new PointF(offsetX+mCenterX + mCenterX * mR * t30, mCenterY -scale* mCenterY * mR);
+//		mCenterPath.moveTo(pTop.x, pTop.y);
 
-		mCenterPath.cubicTo(p_lt1_Control.x, p_lt1_Control.y, p_lt2_Control.x, p_lt2_Control.y, pLeft.x, pLeft.y);
-		mCenterPath.cubicTo(p_lb1_Control.x, p_lb1_Control.y, p_lb2_Control.x, p_lb2_Control.y, pBottom.x, pBottom.y);
-		mCenterPath.cubicTo(p_rb1_Control.x, p_rb1_Control.y, p_rb2_Control.x, p_rb2_Control.y, pRight.x, pRight.y);
-		mCenterPath.cubicTo(p_rt1_Control.x, p_rt1_Control.y, p_rt2_Control.x, p_rt2_Control.y, pTop.x, pTop.y);
-//		mCenterPath.rQuadTo(dx1, dy1, dx2, dy2);
+//		mCenterPath.cubicTo(p_lt1_Control.x, p_lt1_Control.y, p_lt2_Control.x, p_lt2_Control.y, pLeft.x, pLeft.y);
+//		mCenterPath.cubicTo(p_lb1_Control.x, p_lb1_Control.y, p_lb2_Control.x, p_lb2_Control.y, pBottom.x, pBottom.y);
+//		mCenterPath.cubicTo(p_rb1_Control.x, p_rb1_Control.y, p_rb2_Control.x, p_rb2_Control.y, pRight.x, pRight.y);
+//		mCenterPath.cubicTo(p_rt1_Control.x, p_rt1_Control.y, p_rt2_Control.x, p_rt2_Control.y, pTop.x, pTop.y);
 		mPaint.setColor(mMainColor);
-		canvas.drawPath(mCenterPath, mPaint);
-//		canvas.drawCircle(mCenterX, mCenterY, mCenterX*mR, mPaint);		
+//		canvas.drawPath(mCenterPath, mPaint);
+		canvas.drawCircle(mCenterX+offsetX, mCenterY+offsetY, mCenterX*mR*scale, mPaint);		
 	}
 
-	private boolean	mHasLongClicked;
 	private PlayVoiceService	mPlayVoiceService;
-	public void setLongClickFlag(boolean fl) {
-		mHasLongClicked = fl;
-	}
+	private FrameWindowManager mFrameWindowManager;
 
-	public boolean isLongClicked() {
-		return mHasLongClicked;
-	}
 
 	public void resetTaskIndex() {
 		mIndex = 0;
 	}
 
-	public void setService(PlayVoiceService service) {
+	public void setService(PlayVoiceService service, FrameWindowManager f) {
 		this.mPlayVoiceService = service;
+		this.mFrameWindowManager = f;
 	}
 
 
