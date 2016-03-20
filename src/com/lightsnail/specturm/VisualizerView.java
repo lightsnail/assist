@@ -6,11 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.accessibilityservice.AccessibilityService;
-import android.animation.ObjectAnimator;
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RecentTaskInfo;
 import android.app.ActivityManager.RunningTaskInfo;
+import android.app.Service;
 import android.content.ActivityNotFoundException;
 import android.content.ComponentName;
 import android.content.Context;
@@ -30,7 +30,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.provider.ContactsContract.CommonDataKinds.Event;
+import android.os.Vibrator;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.Gravity;
@@ -42,6 +42,7 @@ import com.lightsnail.utils.AppLog;
 import com.lightsnail.utils.VoiceTool;
 import com.lightsnail.weatherclock.FrameWindowManager;
 import com.lightsnail.weatherclock.PlayVoiceService;
+import com.lightsnail.weatherclock.TranslucentActivity;
 
 @SuppressLint("NewApi") 
 public class VisualizerView extends TextView {
@@ -60,12 +61,13 @@ public class VisualizerView extends TextView {
 	private int mCaptureSize = Visualizer.getCaptureSizeRange()[0] ;
 	private int mModelSize = mCaptureSize/2 - 1;
 	private float[] mModel = new float[mModelSize] ;
+	private float[] mLastModel = new float[mModelSize] ;
 	private Visualizer mVisualizer;
 	private int mStaticCount = 0;
 	
 	private int mStatusBarHeight;
 	
-	private float mMax = (float) ((float) Math.log(127) );
+	private float mMax = ((float) Math.log(127) );
 	private int mMainColor;
 //	private int mMainColorHalf;
 	
@@ -128,8 +130,8 @@ public class VisualizerView extends TextView {
 	  List<ResolveInfo> resolveInfo = packageManager.queryIntentActivities(intent, 
 	    PackageManager.MATCH_DEFAULT_ONLY); 
 	  for(ResolveInfo ri : resolveInfo){ 
-	   names.add(ri.activityInfo.packageName); 
-	   AppLog.d("packageName = " + ri.activityInfo.packageName);
+		   names.add(ri.activityInfo.packageName); 
+		   AppLog.d("packageName = " + ri.activityInfo.packageName);
 	  } 
 	  names.add(mContext.getApplicationContext().getPackageName());//排除应用自身
 	  
@@ -153,10 +155,10 @@ public class VisualizerView extends TextView {
 			this.mPaint= new Paint();
 			this.mPaint.setColor(Color.WHITE);
 			this.mPaint.setAntiAlias(true);
-			int alpha = 238;
-			int red = 0;
+			int alpha = 255;
+			int red = 100;
 			int green = 255;
-			int blue = 60;
+			int blue = 0;
 
 			
 			this.mMainColor =Color.argb(alpha, red, green, blue);
@@ -178,20 +180,29 @@ public class VisualizerView extends TextView {
 			mVisualizer.setDataCaptureListener(new OnDataCaptureListener() {
 
 
+				 public   double llog(double value,double base){
+					return Math.log(value) /Math.log(base);
+				}
 				@Override
 				public void onWaveFormDataCapture(Visualizer visualizer, byte[] waveform, int samplingRate) {
 					// TODO Auto-generated method stub
 		            Log.d("debug", "onWaveFormDataCapture ");
+	            	invalidate();
 				}
 				
 				@Override
 				public void onFftDataCapture(Visualizer visualizer, byte[] fft, int samplingRate) {
 
-//					String string = "";
+//					AppLog.d("fft.lenth  = "+(fft.length-2)/2 + ",,,mCaptureSize = "+mCaptureSize);
 					int index = 0;
 		            for (int i = 2; i < fft.length;i+=2) {  
 		            	mModel[index] = (float) Math.hypot(fft[i], fft[i+1]) ; 
-		            	mModel[index] = (float) Math.log(mModel[index]+1);
+		            	mModel[index] =   (float) Math.log(mModel[index]+1);
+//		            	mModel[index] =   (float) llog(mModel[index]+1,Math.E);
+		            	
+//		            	mModel[index] = mLastModel[index] + (mModel[index]  - mLastModel[index]) * 0.4f ;
+//		            	mLastModel[index] = mModel[index];
+//		            	mModel[index] =  mModel[index];
 		            	index++;
 //		                string += mModel[i/2-1]+"__";
 		            }  	
@@ -378,6 +389,8 @@ public class VisualizerView extends TextView {
 	private boolean mRecentlyAppShowing;
 	private boolean mCanClick = true; //是否可点击
 	private boolean mCanLongClick = true;//是否可长按
+	private boolean mCanLeft  = false;//是否可 左滑
+	private boolean mCanRight  = false;//是否可 右滑
 	private boolean mClickActive = false;//点击激活
 	private boolean mLongClickActive = false;//长按激活
 	private int mTouchCount = 0;
@@ -392,6 +405,8 @@ public class VisualizerView extends TextView {
 			case MotionEvent.ACTION_DOWN:
 				mCanClick = true;
 				mCanLongClick  = true;
+				mCanLeft = true;
+				mCanRight = true;
 				mClickActive = false;
 				mLongClickActive = false;
 				mTouchCount = 0;
@@ -423,7 +438,7 @@ public class VisualizerView extends TextView {
 				  if(/*mTouchCount > TOUCH_COUNT &&*/  mCanLongClick && !mLongClickActive){
 //					  mLongClickActive = true;
 //					  mCanClick = false;
-					  mHandler.sendEmptyMessageDelayed(TRT_LONG_CLICK_MESSAGE, 600);
+					  mHandler.sendEmptyMessageDelayed(TRT_LONG_CLICK_MESSAGE, 400);
 				  }
 //				mTouchPointF.x = event.getX();
 //				mTouchPointF.y = event.getY();
@@ -454,6 +469,14 @@ public class VisualizerView extends TextView {
 					mZidooScrollerY.setCurrentIndex(mOffsetY);
 					
 					invalidate();
+					
+					if(mCanLeft && mOffsetX >= mCompareX*.2f){
+						mCanLeft = false;
+						goPreTask(mContext);
+					}else if(mCanRight && mOffsetX <= -mCompareX*.2f){
+						mCanRight = false;
+						goNextTask(mContext);
+					} 
 				}
 
 			break;
@@ -469,15 +492,11 @@ public class VisualizerView extends TextView {
 				mZidooScrollerX.scrollToTargetIndex(0, 600);
 				mZidooScrollerY.scrollToTargetIndex(0, 600);
 				postInvalidate();
-				if(mOffsetX >= mCompareX){
-					goPreTask(mContext);
-				}else if(mOffsetX <= -mCompareX){
-					goNextTask(mContext);
-				}else if(mOffsetY >= mCompareY){
-					goTopDown();
-				}else if(mOffsetY <= - mCompareY){
-					goBottomUp();
-				}
+				  if(mOffsetY >= mCompareY){
+						goTopDown();
+					}else if(mOffsetY <= - mCompareY){
+						goBottomUp();
+					}
 			break;
 			case MotionEvent.ACTION_CANCEL:
 			break;
@@ -506,6 +525,7 @@ public class VisualizerView extends TextView {
 			case TRT_LONG_CLICK_MESSAGE:
 				mLongClickActive = true;
 				AppLog.d("goLongClick");
+				Vibrate(mContext,50);
 //				ObjectAnimator.ofFloat(VisualizerView.this, "scaleX", 1f,1.2f,1f);
 //				ObjectAnimator.ofFloat(VisualizerView.this, "scaleY", 1f,1.2f,1f);
 			break;
@@ -514,6 +534,22 @@ public class VisualizerView extends TextView {
 			}
 		}
 	};
+	
+	/*
+	 * 
+	 * long milliseconds :震动的时长，单位是毫秒
+	 * long[] pattern :自定义震动模式，数组中的数字的含义依次是，静止时长，震动时长，静止时长，震动时长。时长的单位是毫秒
+	 * boolean isRepeat:是否反复震动，如果是true,反复震动，如果是false,只震动一次 
+	 */
+	public static void Vibrate(final Context context ,long milliseconds){
+		Vibrator vib = (Vibrator)context.getSystemService(Service.VIBRATOR_SERVICE);
+		vib.vibrate(milliseconds);
+	}
+	public static void Vibrate(final Context context ,long[]pattern,boolean isRepeat)
+	{
+		Vibrator vibrator = (Vibrator)context.getSystemService(Service.VIBRATOR_SERVICE);
+		vibrator.vibrate(pattern, isRepeat ? 1:-1);
+	}
 	private void changeAlpha() {
 		setAlpha(1f);
 		mHandler.removeMessages(ALPHA);
@@ -600,41 +636,42 @@ public class VisualizerView extends TextView {
 		}
 	}
 	private int mIndex = 0;
+	  List<RecentTag> list =  new ArrayList<VisualizerView.RecentTag>();
 	public   boolean goNextTask(Context cxt ) {
 		AppLog.d("goNextTask");
 //		ActivityManager activityManager = (ActivityManager) cxt.getSystemService(Context.ACTIVITY_SERVICE);
 //		  List<RunningTaskInfo> list = activityManager.getRunningTasks(100);
 
-		  List<RecentTag> list =  getRecentTaskInfos();
+		if(list.size() == 0){
+			list =  getRecentTaskInfos();
+		}
 		  if(mIndex+ 1 >= list.size()){
 			  mIndex = list.size() - 1;
 			  return false;
 		  }
-		  mIndex++;
-		  boolean isHome = isHome();
-		  for (int i = 0; i < list.size(); i++) {
-			 final RecentTag l = list.get(i);
-				 if(i == mIndex){
-					   AppLog.d(l.info.baseIntent.toString());
-					   switchTo(l);
-//					   AppUtils.startAPPFromPackageName(mContext, mContext.getPackageName());
-//					   mPlayVoiceService.mMainActivity.finish();
-//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.right_enter_in, R.anim.left_exit_out);
-//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.down_enter_in, R.anim.up_exit_out);
-
-//					   jump(l);
-
-					   break;
-					 }
+		  mIndex++; 
+		  RecentTag curRecentTag = list.get(mIndex);
+		  
+		  boolean contain = false;
+		  List<RecentTag> templist =   getRecentTaskInfos();
+		  for (int i = 0; i < templist.size(); i++) {
+			  RecentTag rt = templist.get(i);
+			  if(rt. intent.getComponent().getPackageName().equals(curRecentTag.intent.getComponent().getPackageName())){
+				  contain  = true;
+				   Intent intent = new Intent();
+				   intent.setClass(mContext,  TranslucentActivity.class);
+				   intent.putExtra("hold_packagename", curRecentTag.intent.getComponent().getPackageName());
+				   intent.putExtra("direction", "next");
+				   intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK|intent.FLAG_ACTIVITY_CLEAR_TOP );
+				   mContext.startActivity(intent);
+				  break;
+			  }
 		  }
-//		  if(isHome){
-//					 AppLog.d(l.info.baseIntent.toString());
-//					 jump(l);
-//				   break;
-//		  }else{
-//		  }
-		// Log.d("debug", "activityName[i] = "+activityName[0]);
-		// Log.d("debug", "componentName = "+componentName.getClassName());
+		  if( templist.size() != list.size() ||  contain == false){
+			  list = templist;
+			  mIndex = -1;
+			  goNextTask(mContext);
+		  }
 		
 		return true;
 	}
@@ -688,27 +725,36 @@ public class VisualizerView extends TextView {
 
 		AppLog.d("goPreTask");
 		
-		  List<RecentTag> list =  getRecentTaskInfos();
+
+		if(list.size() == 0){
+			list =  getRecentTaskInfos();
+		}
 		  if(mIndex- 1 <  0){
 			  mIndex = 0;
 			  return false;
 		  }
 		  mIndex--;
-//		  boolean isHome = isHome();
-		  for (int i = 0; i < list.size(); i++) {
-			 final RecentTag l = list.get(i);
-				 if(i == mIndex){
-					   AppLog.d(l.info.baseIntent.toString());
-					   switchTo(l);
-//					   AppUtils.startAPPFromPackageName(mContext, mContext.getPackageName());
-//					   mPlayVoiceService.mMainActivity.finish();
-//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.left_enter_in, R.anim.right_exit_out);
-//					   mPlayVoiceService.mMainActivity.overridePendingTransition(R.anim.up_enter_in, R.anim.down_exit_out);
-
-					   
-//					   jump(l);
-					   break;
-					 }
+		  
+		  RecentTag curRecentTag = list.get(mIndex);
+		  boolean contain = false;
+		  List<RecentTag> templist =   getRecentTaskInfos();
+		  for (int i = 0; i < templist.size(); i++) {
+			  RecentTag rt = templist.get(i);
+			  if(rt. intent.getComponent().getPackageName().equals(curRecentTag.intent.getComponent().getPackageName())){
+				  contain  = true;
+				   Intent intent = new Intent();
+				   intent.setClass(mContext,  TranslucentActivity.class);
+				   intent.putExtra("hold_packagename", curRecentTag.intent.getComponent().getPackageName());
+				   intent.putExtra("direction", "pre");
+				   intent.addFlags(intent.FLAG_ACTIVITY_NEW_TASK|intent.FLAG_ACTIVITY_CLEAR_TOP );
+				   mContext.startActivity(intent);
+				  break;
+			  }
+		  }
+		  if( templist.size() != list.size() || contain == false){
+			  list = templist;
+			  mIndex = list.size();
+			  goPreTask(mContext);
 		  }
 		  
 		return true;
@@ -900,9 +946,9 @@ public class VisualizerView extends TextView {
 				list.add(mModel[i]*1f/(mMax));
 			}
 
-//			for (int i = 0; i < mArrayList.size()/2; i++) {
-//				list.add((float) Math.random());
-//			}
+			for (int i = 0; i < mArrayList.size()/2; i++) {
+				list.add((float) Math.random());
+			}
 			for (int i = 0; i < mArrayList.size()/2; i++) {
 				Line line = mArrayList.get(i);
 				line.draw(canvas,list.get(i));
@@ -914,8 +960,6 @@ public class VisualizerView extends TextView {
 				line.draw(canvas,list.get(index));
 				index++;
 			}
-//			removeCallbacks(mRunable);
-//			postDelayed(mRunable, 50);
 		}
 	
 	}
@@ -957,7 +1001,8 @@ public class VisualizerView extends TextView {
 
 
 	public void resetTaskIndex() {
-		mIndex = 0;
+//		mIndex = 0;
+//		list =  getRecentTaskInfos();
 	}
 
 	public void setService(PlayVoiceService service, FrameWindowManager f) {

@@ -20,11 +20,12 @@ public class AlarmUtil {
 
 				Calendar c_cur=Calendar.getInstance();
 				Calendar c_set=Calendar.getInstance();
-				c_set.set(Calendar.HOUR_OF_DAY,  6);
-				c_set.set(Calendar.MINUTE,  59);
-				c_set.set(Calendar.SECOND,  59);
+				c_set.set(Calendar.HOUR_OF_DAY, 8);
+				c_set.set(Calendar.MINUTE, 0);
+				c_set.set(Calendar.SECOND,  0);
 
-				if(c_cur.getTimeInMillis()> c_set.getTimeInMillis()){
+				
+				if(c_cur.getTimeInMillis()>= c_set.getTimeInMillis()){
 					c_set.add(Calendar.DAY_OF_YEAR , 1);
 				}
 

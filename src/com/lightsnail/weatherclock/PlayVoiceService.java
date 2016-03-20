@@ -91,6 +91,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 	@Override
 	public IBinder onBind(Intent intent) {
 		 AppLog.d("onBind() "+this);
+		 AlarmUtil.setAlarm(mContext);
 //		 Intent serviceIntent = new Intent(mContext, MyAccessibilityService.class);
 //		 startService(serviceIntent);
 		return mBinder;
@@ -107,7 +108,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 
 		mContext = this;
 		mFrameWindowManager = new FrameWindowManager(mContext,this );
-		AlarmUtil.setAlarm(mContext);
+		
 		
 		mX_WeatherManager = new X_WeatherManager(mContext,new OnWeatherStringListenner(){
 
@@ -118,7 +119,7 @@ public class PlayVoiceService extends Service implements SpeechSynthesizerListen
 							public void run() {
 								AppLog.d("onWeatherString() "+text);
 								mWeatherString  = text;
-								speak(mWeatherString);
+//								speak(mWeatherString);
 							}
 				} ,5*1000);
 			}

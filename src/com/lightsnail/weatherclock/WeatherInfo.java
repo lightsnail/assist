@@ -122,7 +122,7 @@ public class WeatherInfo {
 	}
 	public void fill(XMLNode ccnode) {
 
-		AppLog.d("fill："+ccnode.getNodeName());
+//		AppLog.d("fill："+ccnode.getNodeName());
 		if(ccnode.getNodeName() .equals("city")){
 			city = ccnode.getNodeValue();
 		}else if(ccnode.getNodeName() .equals("updatetime")){

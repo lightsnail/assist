@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.view.MotionEvent;
+import android.view.inputmethod.InputMethodManager;
 
 
 public class MainActivity extends Activity {
@@ -59,6 +60,8 @@ public class MainActivity extends Activity {
 			
 			
 //		 finish();
+			
+			
     }
 	@Override
 	protected void onResume() {

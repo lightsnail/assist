@@ -198,12 +198,13 @@ import com.lightsnail.utils.VoiceTool;
 	}
 	private void show() {
 		mManager = (WindowManager) mContext.getSystemService("window");
-		mWindLayoutParams = new WindowManager.LayoutParams();
+		mWindLayoutParams = new WindowManager.LayoutParams();  
 		mWindLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR  ;
 		mWindLayoutParams.flags |= 8;
 		mWindLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-		mWindLayoutParams.x = mScreenWidth  *3/5;
-		mWindLayoutParams.y = mScreenHeight *3/5;
+		mWindLayoutParams.x = (int) (mScreenWidth  *4f/5);
+		mWindLayoutParams.y = (int) (mScreenHeight *2f/5);
+		
 		mWindLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.format = 1;
