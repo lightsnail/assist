@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <string name="acc_description">光能蜗牛小助手辅助服务</string>
+    <string name="acc_listen_service_name">光能蜗牛小助手</string>
+    <string name="action_settings">Settings</string>
+    <string name="app_name">光能蜗牛小助手</string>
+    <string name="click_voice">点击播报</string>
+    <string name="hello_world">Hello world!</string>
+</resources>

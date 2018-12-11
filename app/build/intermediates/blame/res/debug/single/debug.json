@@ -1,0 +1,138 @@
+[
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\xml_accessibility_config.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\xml\\accessibility_config.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_drop_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_drop_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_blny_you_zhong_hqgdgj.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\blny_you_zhong_hqgdgj.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_ic_launcher.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-hdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_up_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\up_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_down_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\down_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_drop_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_drop_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_rotate_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_rotate_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_rotate_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_rotate_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-ldpi_home.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-ldpi\\home.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_blny_bu_zhi_dao_ckgysmbqlxr.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\blny_bu_zhi_dao_ckgysmbqlxr.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_home.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-xxhdpi\\home.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_frame_view.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\layout\\frame_view.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_mubiao_suoding.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\mubiao_suoding.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_di_yi_ji_zzzb.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\di_yi_ji_zzzb.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_ic_launcher.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-xhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_drop_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_drop_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_drop_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_drop_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_home.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-mdpi\\home.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_down_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\down_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_up_exit_out.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\up_exit_out.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_zhunming.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\zhunming.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_rotate_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_rotate_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xxhdpi_ic_launcher.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-xxhdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi_ic_launcher.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-mdpi\\ic_launcher.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_right_rotate_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\right_rotate_enter_in.xml"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi_home.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-hdpi\\home.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\raw_yes_master.mp3.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\raw\\yes_master.mp3"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi_home.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\drawable-xhdpi\\home.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\res\\merged\\debug\\anim_left_enter_in.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\anim\\left_enter_in.xml"
+    }
+]

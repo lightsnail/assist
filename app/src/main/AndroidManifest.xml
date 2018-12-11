@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.lightsnail.weatherclock"
+    android:versionCode="1"
+    android:versionName="1.0" 
+    android:installLocation="preferExternal">
+
+
+    <uses-permission android:name="android.permission.EXPAND_STATUS_BAR" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.REORDER_TASKS" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+  	<uses-permission android:name="android.permission.BIND_ACCESSIBILITY_SERVICE" />
+  	<uses-permission android:name="android.permission.VIBRATE"/>
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+           >
+           
+	  <service 
+	      android:name="com.lightsnail.weatherclock.MyAccessibilityService"
+          android:label="@string/acc_listen_service_name"
+          android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" 
+          android:enabled="true">
+	    <intent-filter>
+	      <action android:name="android.accessibilityservice.AccessibilityService" />
+	    </intent-filter>
+	    <meta-data android:name="android.accessibilityservice" android:resource="@xml/accessibility_config" />
+	  </service>
+	  <receiver android:name="com.lightsnail.weatherclock.BatteryReceiver"> 
+          <intent-filter> 
+             <action android:name="android.intent.action.ACTION_POWER_CONNECTED"/>
+    		 <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED"/>
+              <action android:name="android.intent.action.BATTERY_CHANGED" /> 
+              <action android:name="android.intent.action.BATTERY_OKAY"/> 
+              <action android:name="android.intent.action.BATTERY_LOW"/> 
+          </intent-filter>  
+       </receiver> 
+	  <receiver android:name="com.lightsnail.weatherclock.AlarmReceiver"> 
+          <intent-filter> 
+             <action android:name="short"/>
+          </intent-filter>  
+       </receiver> 
+		<receiver android:name="com.lightsnail.weatherclock.PlayVoiceService$HomeBroadcastReceiver" >
+		    <intent-filter>
+			    <action android:name="com.lightsnail.weatherclock.HomeBroadcastReceiver" />
+			    <category android:name="android.intent.category.HOME" />
+		    </intent-filter>
+		</receiver>
+		<activity
+            android:name=".TranslucentActivity"
+            android:label="@string/app_name" 
+           android:launchMode="singleInstance"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            >
+        </activity>
+        
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name" 
+           android:launchMode="singleInstance"
+            android:excludeFromRecents="true"
+            >
+            <!--
+            android:excludeFromRecents="true"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:theme="@android:style/Theme.Dialog"
+            -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        
+        <service android:name="com.lightsnail.weatherclock.PlayVoiceService" >
+        </service>
+        
+        <receiver
+            android:name="com.lightsnail.weatherclock.StartReceiver"
+            android:exported="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

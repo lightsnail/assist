@@ -1,0 +1,43 @@
+{
+    "logs": [
+        {
+            "outputFile": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "map": [
+                {
+                    "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\values\\dimens.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "92,151",
+                        "endColumns": "57,55",
+                        "endOffsets": "145,202"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,113",
+                        "endColumns": "57,55",
+                        "endOffsets": "108,164"
+                    }
+                },
+                {
+                    "source": "E:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\src\\main\\res\\values\\strings.xml",
+                    "from": {
+                        "startLines": "8,7,5,3,6,4",
+                        "startColumns": "1,1,4,4,1,4",
+                        "startOffsets": "312,253,158,58,209,104",
+                        "endColumns": "54,58,52,44,43,52",
+                        "endOffsets": "365,310,206,98,251,152"
+                    },
+                    "to": {
+                        "startLines": "4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "169,225,285,338,383,428",
+                        "endColumns": "55,59,52,44,44,52",
+                        "endOffsets": "220,280,333,378,423,476"
+                    }
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+#Tue Dec 11 16:20:38 CST 2018
+base.0=E\:\\A_Self\\Self_WorkSpace\\AS-Assist\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
