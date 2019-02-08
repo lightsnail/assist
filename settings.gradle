@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':float_manager'

@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.warm.tech.float_manager" >
+
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <application>
+        <service android:name="com.warm.tech.float_manager.FloatViewService"></service>
+    </application>
+</manifest>
