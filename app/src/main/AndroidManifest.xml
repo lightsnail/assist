@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.warm.tech.lightsnail">
+    -->
 
+    <meta-data android:name="com.baidu.speech.APP_ID"
+        android:value="8582573" />
+    <meta-data
+        android:name="com.baidu.speech.API_KEY"
+        android:value="E9rGnSljmLPMNC1ChLmhSNVIXSf568xm" />
+    <meta-data
+        android:name="com.baidu.speech.SECRET_KEY"
+        android:value="8Ib2WPeBki6lyDyxwqvHpqE5E95iRA1a" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,13 +18,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+
+        <service
+            android:name="com.baidu.speech.VoiceRecognitionService"
+            android:exported="false" />
+        <activity android:name="com.warm.tech.lightsnail.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog" />
+        <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUp" />
     </application>
 
 </manifest>

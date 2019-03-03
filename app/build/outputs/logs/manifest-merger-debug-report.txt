@@ -1,10 +1,12 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-18:12
+MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-38:12
+MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-29:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:17:1-22:12
@@ -17,61 +19,101 @@ MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\
 MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5bacf69ea88de97279d4c4a7caba1b6a\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\55f0662bb3e1d3b1d546b3b45e3beedf\AndroidManifest.xml:17:1-22:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
 	package
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-21:12
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-37:12
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:11-69
+meta-data#com.baidu.speech.APP_ID
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:6:5-7:35
+	android:value
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:7:9-32
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:6:16-54
+meta-data#com.baidu.speech.API_KEY
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:8:5-10:60
+	android:value
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:10:9-57
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:9:9-48
+meta-data#com.baidu.speech.SECRET_KEY
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:11:5-13:60
+	android:value
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:13:9-57
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:12:9-51
 application
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:5:5-19:19
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:14:5-35:19
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:5-16:19
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:5-16:19
+MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-36:19
+MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-36:19
+MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:5-27:19
+MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:5-27:19
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
 	android:supportsRtl
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:10:9-35
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:19:9-35
 	android:label
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:8:9-41
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:17:9-41
 	android:roundIcon
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:9:9-54
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:18:9-54
 	android:icon
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:7:9-43
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:16:9-43
 	android:allowBackup
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:6:9-35
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:15:9-35
 	android:theme
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:11:9-40
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:20:9-40
+service#com.baidu.speech.VoiceRecognitionService
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:23:9-25:40
+	android:exported
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:25:13-37
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:24:13-68
 activity#com.warm.tech.lightsnail.MainActivity
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:12:9-18:20
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:26:9-32:20
 	android:name
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:12:19-47
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:26:19-71
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:13:13-17:29
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:27:13-31:29
 action#android.intent.action.MAIN
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:14:17-69
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:28:17-69
 	android:name
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:14:25-66
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:28:25-66
 category#android.intent.category.LAUNCHER
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:16:17-77
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:30:17-77
 	android:name
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:16:27-74
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:30:27-74
+activity#com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:33:9-88
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:33:19-85
+activity#com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUp
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:34:9-83
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:34:19-80
 uses-sdk
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:5:5-7:41
@@ -118,3 +160,71 @@ service#com.warm.tech.float_manager.FloatViewService
 ADDED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:9-80
 	android:name
 		ADDED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:18-77
+activity#com.baidu.aip.asrwakeup3.uiasr.setting.OnlineSetting
+ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:9-17:72
+	android:screenOrientation
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:13-49
+	android:label
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:13-35
+	android:configChanges
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:13-76
+	android:theme
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:13-69
+	android:name
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:13-80
+activity#com.baidu.aip.asrwakeup3.uiasr.setting.OfflineSetting
+ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:18:9-23:72
+	android:screenOrientation
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:22:13-49
+	android:label
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:13-35
+	android:configChanges
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:20:13-76
+	android:theme
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:23:13-69
+	android:name
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:19:13-81
+activity#com.baidu.aip.asrwakeup3.uiasr.setting.NluSetting
+ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:24:9-29:72
+	android:screenOrientation
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:28:13-49
+	android:label
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:27:13-33
+	android:configChanges
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:26:13-76
+	android:theme
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:29:13-69
+	android:name
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:25:13-77
+activity#com.baidu.aip.asrwakeup3.uiasr.setting.AllSetting
+ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:30:9-35:72
+	android:screenOrientation
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:34:13-49
+	android:label
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:33:13-33
+	android:configChanges
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:32:13-76
+	android:theme
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:35:13-69
+	android:name
+		ADDED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:31:13-77
+uses-permission#android.permission.RECORD_AUDIO
+ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-71
+	android:name
+		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:22-68
+uses-permission#android.permission.ACCESS_NETWORK_STATE
+ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-79
+	android:name
+		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:22-76
+uses-permission#android.permission.INTERNET
+ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-67
+	android:name
+		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:22-64
+uses-permission#android.permission.READ_PHONE_STATE
+ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:5-75
+	android:name
+		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:22-72
+uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
+ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-81
+	android:name
+		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:22-78
