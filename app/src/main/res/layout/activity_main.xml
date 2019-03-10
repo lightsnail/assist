@@ -6,11 +6,21 @@
     android:layout_height="match_parent"
     tools:context="com.warm.tech.lightsnail.MainActivity">
 
-    <Button
-        android:id="@+id/button"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="148dp"
-        tools:layout_editor_absoluteY="231dp" />
+        android:orientation="vertical"
+        >
+        <Button
+            android:id="@+id/awake_and_reg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="识别和唤醒" />
+        <Button
+            android:id="@+id/tts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="语音合成"  />
+    </LinearLayout>
+
 </android.support.constraint.ConstraintLayout>

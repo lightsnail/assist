@@ -22,13 +22,21 @@ public class MainActivity extends AppCompatActivity {
         //浮动窗口单例，目前把窗口暂时放在service里面
         GlobleFloatManager.GetInstance(this,this) ;
 
-        //尝试测试百度代码
        // mBaiduASR = new BaiDuASR(this);
-        findViewById(R.id.button).setOnClickListener(new View.OnClickListener(){
+        //尝试测试百度唤醒和识别代码
+        findViewById(R.id.awake_and_reg).setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
                 intent.setClass(MainActivity.this, com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog.class);
+                startActivity(intent);
+            }
+        });
+        findViewById(R.id.tts).setOnClickListener( new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(MainActivity.this, com.baidu.tts.TTSActivity.class);
                 startActivity(intent);
             }
         });

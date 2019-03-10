@@ -31,4 +31,6 @@ dependencies {
     implementation project(':float_manager')
     implementation project(':uiasr')
     implementation project(':core')
+    implementation project(':baidu_tts')
+
 }
