@@ -1,45 +1,37 @@
 package com.warm.tech.lightsnail;
 
-import android.content.Intent;
-import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.TextView;
 
-import com.baidu.aip.asrwakeup3.core.inputstream.InFileStream;
-import com.warm.tech.float_manager.FloatViewService;
 import com.warm.tech.float_manager.GlobleFloatManager;
+
+import org.w3c.dom.Text;
 
 
 public class MainActivity extends AppCompatActivity {
-    //private BaiDuASR mBaiduASR;
+    private SessionManager mSessionManager;//人类和机器人的会话管理
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
         //浮动窗口单例，目前把窗口暂时放在service里面
         GlobleFloatManager.GetInstance(this,this) ;
 
-       // mBaiduASR = new BaiDuASR(this);
-        //尝试测试百度唤醒和识别代码
-        findViewById(R.id.awake_and_reg).setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog.class);
-                startActivity(intent);
-            }
-        });
-        findViewById(R.id.tts).setOnClickListener( new View.OnClickListener(){
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent();
-                intent.setClass(MainActivity.this, com.baidu.tts.sample.MySynthActivity.class);
-                startActivity(intent);
-            }
-        });
+        mSessionManager = new SessionManager(this,(TextView)findViewById(R.id.text));
+
+
+//        findViewById(R.id.tts).setOnClickListener( new View.OnClickListener(){
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent();
+//                intent.setClass(MainActivity.this, com.baidu.tts.sample.MySynthActivity.class);
+//                startActivity(intent);
+//            }
+//        });
     }
 
     @Override

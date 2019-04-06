@@ -637,7 +637,7 @@
     },
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_activity_main.xml.flat",
-        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\layout\\activity_main.xml"
+        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\baidu_ttss\\build\\intermediates\\bundles\\debug\\res\\layout\\activity_main.xml"
     },
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-v21_abc_edit_text_material.xml.flat",
@@ -838,6 +838,10 @@
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_ic_menu_paste_mtrl_am_alpha.png.flat",
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\drawable-hdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_main.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\layout\\main.xml"
     },
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable_abc_ratingbar_small_material.xml.flat",

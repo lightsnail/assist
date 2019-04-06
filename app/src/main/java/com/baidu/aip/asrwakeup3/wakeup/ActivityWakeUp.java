@@ -9,7 +9,6 @@ import com.baidu.aip.asrwakeup3.core.wakeup.MyWakeup;
 import com.baidu.aip.asrwakeup3.core.wakeup.RecogWakeupListener;
 import com.baidu.aip.asrwakeup3.uiasr.activity.ActivityCommon;
 import com.baidu.speech.asr.SpeechConstant;
-import com.warm.tech.lightsnail.LightSnailUtil;
 import com.warm.tech.lightsnail.R;
 
 import java.util.HashMap;

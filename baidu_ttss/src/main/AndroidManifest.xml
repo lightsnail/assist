@@ -24,7 +24,6 @@
         <activity android:name="com.baidu.tts.sample.MainActivity">
             <!-- 这里改成MiniActivity 或者 SynthActivity 可以直接启动识别 -->
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
