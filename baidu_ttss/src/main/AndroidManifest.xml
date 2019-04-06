@@ -17,6 +17,26 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
-
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity android:name="com.baidu.tts.sample.MainActivity">
+            <!-- 这里改成MiniActivity 或者 SynthActivity 可以直接启动识别 -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.baidu.tts.sample.SynthActivity"
+            android:label="离在线语音合成" />
+        <activity
+            android:name="com.baidu.tts.sample.MiniActivity"
+            android:label="精简版合成" />
+        <activity
+            android:name="com.baidu.tts.sample.SaveFileActivity"
+            android:label="保存合成后的音频" />
+    </application>
 
 </manifest>

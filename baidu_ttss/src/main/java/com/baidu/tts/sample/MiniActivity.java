@@ -1,7 +1,6 @@
-package com.baidu.tts;
+package com.baidu.tts.sample;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.pm.PackageManager;
 import android.media.AudioManager;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ import com.baidu.tts.chainofresponsibility.logger.LoggerProxy;
 import com.baidu.tts.client.SpeechSynthesizer;
 import com.baidu.tts.client.SpeechSynthesizerListener;
 import com.baidu.tts.client.TtsMode;
-import com.baidu.tts.sample.R;
 import com.baidu.tts.sample.control.InitConfig;
 import com.baidu.tts.sample.listener.UiMessageListener;
 import com.baidu.tts.sample.util.AutoCheck;
@@ -38,10 +36,9 @@ import java.util.Map;
  * Created by fujiayi on 2017/9/14.
  */
 
-public class TTSActivity extends AppCompatActivity {
+public class MiniActivity extends AppCompatActivity {
 
-    //private static final String TEXT = "欢迎使用百度语音合成，请在代码中修改合成文本";
-    private static final String TEXT = "尊敬的人类文明的探索者，时间旅行的先驱者，光能蜗牛勇士，时隔两年，您乘坐的列车，休伯利安号战舰现已到站！";
+    private static final String TEXT = "欢迎使用百度语音合成，请在代码中修改合成文本";
 
 
     // ================== 初始化参数设置开始 ==========================
@@ -82,12 +79,11 @@ public class TTSActivity extends AppCompatActivity {
 
     protected Handler mainHandler;
 
-//    private static final String DESC = "精简版合成，仅给出示例集成合成的调用过程。可以测试离线合成功能，首次使用请联网。\n"
-//            + "其中initTTS方法需要在新线程调用，否则引起UI阻塞。\n"
-//            + "纯在线请修改代码里ttsMode为TtsMode.ONLINE， 没有纯离线。\n"
-//            + "离线功能需要手动将assets目录下的资源文件复制到TEMP_DIR =/sdcard/baiduTTS \n"
-//            + "完整的SDK调用方式可以参见MainActivity\n\n";
-    private static final String DESC = "";
+    private static final String DESC = "精简版合成，仅给出示例集成合成的调用过程。可以测试离线合成功能，首次使用请联网。\n"
+            + "其中initTTS方法需要在新线程调用，否则引起UI阻塞。\n"
+            + "纯在线请修改代码里ttsMode为TtsMode.ONLINE， 没有纯离线。\n"
+            + "离线功能需要手动将assets目录下的资源文件复制到TEMP_DIR =/sdcard/baiduTTS \n"
+            + "完整的SDK调用方式可以参见MainActivity\n\n";
 
 
     private static final String TAG = "MiniActivity";
@@ -155,7 +151,7 @@ public class TTSActivity extends AppCompatActivity {
         // 设置合成的语速，0-9 ，默认 5
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_SPEED, "5");
         // 设置合成的语调，0-9 ，默认 5
-        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "8");
+        mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_PITCH, "5");
 
         mSpeechSynthesizer.setParam(SpeechSynthesizer.PARAM_MIX_MODE, SpeechSynthesizer.MIX_MODE_DEFAULT);
         // 该参数设置为TtsMode.MIX生效。即纯在线模式不生效。
@@ -276,16 +272,12 @@ public class TTSActivity extends AppCompatActivity {
         View.OnClickListener listener = new View.OnClickListener() {
             public void onClick(View v) {
                 int id = v.getId();
-                switch (id) {
-                    case R.id.speak:
+
+                    if( R.id.speak == id) {
                         speak();
-                        break;
-                    case R.id.stop:
+                    }else if(R.id.stop == id) {
                         stop();
-                        break;
-                    default:
-                        break;
-                }
+                    }
             }
         };
         mSpeak.setOnClickListener(listener);

@@ -4,8 +4,8 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.warm.tech.lightsnail"
-
-        // applicationId "com.baidu.speech.recognizerdemo"
+        //applicationId "com.baidu.speech.recognizerdemo"
+        //applicationId  "com.baidu.tts.sample"
         minSdkVersion 15
         targetSdkVersion 27
         versionCode 1
@@ -20,7 +20,6 @@ android {
         }
     }
 }
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -31,6 +30,5 @@ dependencies {
     implementation project(':float_manager')
     implementation project(':uiasr')
     implementation project(':core')
-    implementation project(':baidu_tts')
-
+    implementation project(':baidu_ttss')
 }

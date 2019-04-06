@@ -32,7 +32,7 @@
         </activity>
         <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog" />
         <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUp" />
-        <activity android:name="com.baidu.tts.TTSActivity" />
+        <activity android:name="com.baidu.tts.sample.MySynthActivity" />
     </application>
 
 </manifest>

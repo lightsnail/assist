@@ -2886,25 +2886,6 @@
                     }
                 },
                 {
-                    "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\baidu_tts\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
-                    "from": {
-                        "startLines": "3,4,5",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "107,152,195",
-                        "endLines": "3,4,11",
-                        "endColumns": "44,42,12",
-                        "endOffsets": "147,190,481"
-                    },
-                    "to": {
-                        "startLines": "690,691,697",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "56260,56305,56790",
-                        "endLines": "690,691,703",
-                        "endColumns": "44,42,12",
-                        "endOffsets": "56300,56343,57076"
-                    }
-                },
-                {
                     "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\values\\styles.xml",
                     "from": {
                         "startLines": "3",
@@ -2995,6 +2976,25 @@
                         "endLines": "54,62,63,64,65,66,72,75,76,77,80,81,84,87,88,89,90,91,94,97,98,99,100,105,108,111,112,113,118,119,120,123,126,127,130,133,136,139,140,143,146,147,152,153,158,161,164,165,166,167,168,169,170,171,172,173,182",
                         "endColumns": "60,11,47,51,60,45,11,60,59,69,11,67,11,11,61,64,67,66,11,11,66,64,64,11,11,11,65,66,11,68,65,11,11,66,11,11,11,11,64,11,11,64,11,66,11,11,11,64,61,61,61,58,59,60,60,58,11",
                         "endOffsets": "2438,2729,2777,2829,2890,2936,3179,3334,3394,3464,3597,3665,3794,3920,3982,4047,4115,4182,4305,4430,4497,4562,4627,4808,4929,5050,5116,5183,5393,5462,5528,5653,5779,5846,5972,6099,6224,6351,6416,6542,6665,6730,6938,7005,7185,7305,7425,7490,7552,7614,7676,7735,7795,7856,7917,7976,8351"
+                    }
+                },
+                {
+                    "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\baidu_ttss\\build\\intermediates\\bundles\\debug\\res\\values\\values.xml",
+                    "from": {
+                        "startLines": "3,4,5",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "107,152,195",
+                        "endLines": "3,4,11",
+                        "endColumns": "44,42,12",
+                        "endOffsets": "147,190,481"
+                    },
+                    "to": {
+                        "startLines": "690,691,697",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "56260,56305,56790",
+                        "endLines": "690,691,703",
+                        "endColumns": "44,42,12",
+                        "endOffsets": "56300,56343,57076"
                     }
                 },
                 {

@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent();
-                intent.setClass(MainActivity.this, com.baidu.tts.TTSActivity.class);
+                intent.setClass(MainActivity.this, com.baidu.tts.sample.MySynthActivity.class);
                 startActivity(intent);
             }
         });
