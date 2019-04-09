@@ -1,39 +1,40 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:2:1-11:12
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\68e4fc9316b8df09a61b4bab658948b4\AndroidManifest.xml:17:1-22:12
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-18:12
 MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-38:12
 MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-29:12
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-43:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:17:1-22:12
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:2:1-11:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\0e293b45fc4ac7ecbddd9304686cf5ab\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-ui:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-core-ui-27.1.1.aar\4a1cb8cba57d70c18398dc06bdee1112\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-core-utils:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-core-utils-27.1.1.aar\c576044f3b117eba60b4dc1b1c50cb53\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\d75307f8e05c6f1db98df5c62f4bf95e\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\574843923bc25090cc4dec6a321c800d\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:17:1-22:12
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5bacf69ea88de97279d4c4a7caba1b6a\AndroidManifest.xml:17:1-22:12
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:17:1-22:12
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\55f0662bb3e1d3b1d546b3b45e3beedf\AndroidManifest.xml:17:1-22:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
-INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:17:1-22:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
+INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
 	package
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:3:5-39
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	android:versionName
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	android:versionCode
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
-		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-38:12
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:1-39:12
 		INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	xmlns:android
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:2:11-69
@@ -56,7 +57,9 @@ ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\Andro
 	android:name
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:12:9-51
 application
-ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:14:5-36:19
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:14:5-37:19
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:5-16:19
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:14:5-16:19
 MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-36:19
@@ -65,8 +68,6 @@ MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\buil
 MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:5-27:19
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:5-41:19
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:5-41:19
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:9:5-20
 	android:supportsRtl
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:19:9-35
 	android:label
@@ -111,10 +112,18 @@ activity#com.baidu.tts.sample.MySynthActivity
 ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:35:9-73
 	android:name
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:35:19-70
+activity#com.warm.tech.lightsnail.session.SessionActivity
+ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:36:9-85
+	android:name
+		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:36:19-82
 uses-sdk
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:5:5-7:41
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\68e4fc9316b8df09a61b4bab658948b4\AndroidManifest.xml:20:5-44
+MERGED from [com.android.support:recyclerview-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\recyclerview-v7-27.1.1.aar\68e4fc9316b8df09a61b4bab658948b4\AndroidManifest.xml:20:5-44
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\float_manager\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
@@ -125,8 +134,6 @@ MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\bai
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:5:5-7:41
-MERGED from [com.android.support.constraint:constraint-layout:1.1.3] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\constraint-layout-1.1.3.aar\ef92810e7a5aafd5b8078ee519ff5761\AndroidManifest.xml:5:5-7:41
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\0e293b45fc4ac7ecbddd9304686cf5ab\AndroidManifest.xml:20:5-44
@@ -139,14 +146,14 @@ MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\Pacifi
 MERGED from [com.android.support:support-vector-drawable:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-vector-drawable-27.1.1.aar\d75307f8e05c6f1db98df5c62f4bf95e\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\574843923bc25090cc4dec6a321c800d\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-compat:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-compat-27.1.1.aar\574843923bc25090cc4dec6a321c800d\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:20:5-44
-MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5bacf69ea88de97279d4c4a7caba1b6a\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.lifecycle:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\5bacf69ea88de97279d4c4a7caba1b6a\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:livedata-core:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\livedata-core-1.1.0.aar\3b418255996bff2e9101d00228806a92\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\55f0662bb3e1d3b1d546b3b45e3beedf\AndroidManifest.xml:20:5-44
 MERGED from [android.arch.core:runtime:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\runtime-1.1.0.aar\55f0662bb3e1d3b1d546b3b45e3beedf\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:20:5-44
+MERGED from [android.arch.lifecycle:viewmodel:1.1.0] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\viewmodel-1.1.0.aar\7be7c473c5bc745a88ded67024412f68\AndroidManifest.xml:20:5-44
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 INJECTED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml
 	android:targetSdkVersion

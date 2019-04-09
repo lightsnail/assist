@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+    <TextView
+        android:id="@+id/tv_aside"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="#ffeeeeee"
+        android:gravity="center"
+        android:text="who"
+        android:textSize="12sp" />
+    <TextView
+        android:id="@+id/tv_receive"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#ffdddddd"
+        android:gravity="left|center_vertical"
+        android:text="who?"
+        android:textSize="20sp" />
+    <TextView
+        android:id="@+id/tv_send"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="#ff60ff00"
+        android:gravity="left|center_vertical"
+        android:text="who"
+        android:textSize="20sp" />
+
+</RelativeLayout>

@@ -33,6 +33,7 @@
         <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUpRecog" />
         <activity android:name="com.baidu.aip.asrwakeup3.wakeup.ActivityWakeUp" />
         <activity android:name="com.baidu.tts.sample.MySynthActivity" />
+        <activity android:name="com.warm.tech.lightsnail.session.SessionActivity" />
     </application>
 
 </manifest>

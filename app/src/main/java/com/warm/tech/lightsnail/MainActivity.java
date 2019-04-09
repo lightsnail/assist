@@ -1,14 +1,15 @@
 package com.warm.tech.lightsnail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.TextView;
 
 import com.warm.tech.float_manager.GlobleFloatManager;
-
-import org.w3c.dom.Text;
+import com.warm.tech.lightsnail.session.ContentView;
+import com.warm.tech.lightsnail.session.SessionActivity;
+import com.warm.tech.lightsnail.session.SessionManager;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,12 +18,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //
-        setContentView(R.layout.main);
+        //setContentView(R.layout.main);
+         setContentView(R.layout.session_main);
         //浮动窗口单例，目前把窗口暂时放在service里面
         GlobleFloatManager.GetInstance(this,this) ;
+        mSessionManager = new SessionManager(this,getWindow().getDecorView());
 
-        mSessionManager = new SessionManager(this,(TextView)findViewById(R.id.text));
-
+//        Intent intent = new Intent();
+//        intent.setClass(MainActivity.this, SessionActivity.class);
+//        startActivity(intent);
 
 //        findViewById(R.id.tts).setOnClickListener( new View.OnClickListener(){
 //            @Override

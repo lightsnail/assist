@@ -544,6 +544,10 @@
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\color-v21\\abc_btn_colored_borderless_text_material.xml"
     },
     {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable_ttt.png.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\drawable\\ttt.png"
+    },
+    {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-xhdpi-v4_abc_switch_track_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\drawable-xhdpi-v4\\abc_switch_track_mtrl_alpha.9.png"
     },
@@ -1028,6 +1032,10 @@
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\drawable-mdpi-v4\\abc_ic_menu_paste_mtrl_am_alpha.png"
     },
     {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_session_main.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\layout\\session_main.xml"
+    },
+    {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-hdpi-v4_abc_scrubber_control_to_pressed_mtrl_000.png.flat",
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\drawable-hdpi-v4\\abc_scrubber_control_to_pressed_mtrl_000.png"
     },
@@ -1262,6 +1270,10 @@
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_abc_textfield_search_default_mtrl_alpha.9.png.flat",
         "source": "C:\\Users\\PacificFuture\\.gradle\\caches\\transforms-1\\files-1.1\\appcompat-v7-27.1.1.aar\\f2d17e64dec67d75c7a33394cacecc2c\\res\\drawable-mdpi-v4\\abc_textfield_search_default_mtrl_alpha.9.png"
+    },
+    {
+        "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\layout_session_item.xml.flat",
+        "source": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\src\\main\\res\\layout\\session_item.xml"
     },
     {
         "merged": "E:\\A_Self\\Self_WorkSpace\\assist_from_server\\assist\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-anydpi-v26_ic_launcher.xml.flat",
