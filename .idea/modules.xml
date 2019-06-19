@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/baidu_ttss/baidu_ttss.iml" filepath="$PROJECT_DIR$/baidu_ttss/baidu_ttss.iml" />
       <module fileurl="file://$PROJECT_DIR$/core/core.iml" filepath="$PROJECT_DIR$/core/core.iml" />
       <module fileurl="file://$PROJECT_DIR$/float_manager/float_manager.iml" filepath="$PROJECT_DIR$/float_manager/float_manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/music_module/music_module.iml" filepath="$PROJECT_DIR$/music_module/music_module.iml" />
       <module fileurl="file://$PROJECT_DIR$/uiasr/uiasr.iml" filepath="$PROJECT_DIR$/uiasr/uiasr.iml" />
     </modules>
   </component>

@@ -1,1 +1,1 @@
-include ':app', ':float_manager', ':core', ':baidu_ttss', ':uiasr'
+include ':app', ':float_manager', ':core', ':baidu_ttss', ':uiasr', ':music_module'

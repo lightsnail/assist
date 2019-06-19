@@ -139,7 +139,7 @@ public class Mouth {
         // 设置合成的语速，0-9 ，默认 5
         params.put(SpeechSynthesizer.PARAM_SPEED, "5");
         // 设置合成的语调，0-9 ，默认 5
-        params.put(SpeechSynthesizer.PARAM_PITCH, "9");
+        params.put(SpeechSynthesizer.PARAM_PITCH, "7");
 
 
         params.put(SpeechSynthesizer.PARAM_MIX_MODE, SpeechSynthesizer.MIX_MODE_DEFAULT);

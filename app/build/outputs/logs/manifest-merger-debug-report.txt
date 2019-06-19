@@ -10,6 +10,8 @@ MERGED from [:float_manager] E:\A_Self\Self_WorkSpace\assist_from_server\assist\
 MERGED from [:uiasr] E:\A_Self\Self_WorkSpace\assist_from_server\assist\uiasr\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-38:12
 MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-29:12
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-43:12
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:2:1-19:12
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:2:1-19:12
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:17:1-22:12
 MERGED from [com.android.support:animated-vector-drawable:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\animated-vector-drawable-27.1.1.aar\0e293b45fc4ac7ecbddd9304686cf5ab\AndroidManifest.xml:17:1-22:12
@@ -68,6 +70,10 @@ MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\buil
 MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:17:5-27:19
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:5-41:19
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:21:5-41:19
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-17:19
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-17:19
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:13:5-17:19
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:13:5-17:19
 	android:supportsRtl
 		ADDED from E:\A_Self\Self_WorkSpace\assist_from_server\assist\app\src\main\AndroidManifest.xml:19:9-35
 	android:label
@@ -132,6 +138,10 @@ MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\buil
 MERGED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:7:5-9:41
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:7:5-9:41
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:7:5-9:41
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:appcompat-v7:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\appcompat-v7-27.1.1.aar\f2d17e64dec67d75c7a33394cacecc2c\AndroidManifest.xml:20:5-44
 MERGED from [com.android.support:support-fragment:27.1.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\support-fragment-27.1.1.aar\16786dc87fc5c28841d06c4a296caeb1\AndroidManifest.xml:20:5-44
@@ -238,6 +248,10 @@ uses-permission#android.permission.INTERNET
 ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-67
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-67
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-67
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-67
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:11:5-67
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:11:5-67
+MERGED from [com.yhd.hdmediaplayer:hdmediaplayer:1.0.1] C:\Users\PacificFuture\.gradle\caches\transforms-1\files-1.1\hdmediaplayer-1.0.1.aar\89f17a97e5bdc51a599221aa7d49b910\AndroidManifest.xml:11:5-67
 	android:name
 		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:22-64
 uses-permission#android.permission.READ_PHONE_STATE
@@ -250,6 +264,8 @@ uses-permission#android.permission.WRITE_EXTERNAL_STORAGE
 ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-81
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-81
 MERGED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:5-81
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-81
+MERGED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:12:5-81
 	android:name
 		ADDED from [:core] E:\A_Self\Self_WorkSpace\assist_from_server\assist\core\build\intermediates\manifests\full\debug\AndroidManifest.xml:15:22-78
 uses-permission#android.permission.MODIFY_AUDIO_SETTINGS
@@ -292,3 +308,11 @@ ADDED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baid
 		ADDED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:40:13-37
 	android:name
 		ADDED from [:baidu_ttss] E:\A_Self\Self_WorkSpace\assist_from_server\assist\baidu_ttss\build\intermediates\manifests\full\debug\AndroidManifest.xml:39:13-65
+uses-permission#android.permission.READ_EXTERNAL_STORAGE
+ADDED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:5-80
+	android:name
+		ADDED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:13:22-77
+activity#com.lightsnail.music_module.TestMusicActiivty
+ADDED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:9-82
+	android:name
+		ADDED from [:music_module] E:\A_Self\Self_WorkSpace\assist_from_server\assist\music_module\build\intermediates\manifests\full\debug\AndroidManifest.xml:16:19-79

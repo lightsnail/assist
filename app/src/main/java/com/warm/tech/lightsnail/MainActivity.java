@@ -4,11 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.TextView;
+import android.view.View;
 
+import com.lightsnail.music_module.TestMusicActiivty;
 import com.warm.tech.float_manager.GlobleFloatManager;
-import com.warm.tech.lightsnail.session.ContentView;
-import com.warm.tech.lightsnail.session.SessionActivity;
 import com.warm.tech.lightsnail.session.SessionManager;
 
 
@@ -20,10 +19,20 @@ public class MainActivity extends AppCompatActivity {
         //
         //setContentView(R.layout.main);
          setContentView(R.layout.session_main);
-        //浮动窗口单例，目前把窗口暂时放在service里面
+        //浮动窗口单例，目前把窗口暂时放在service里面,暂时注释掉
         GlobleFloatManager.GetInstance(this,this) ;
+
+
         mSessionManager = new SessionManager(this,getWindow().getDecorView());
 
+        findViewById(R.id.bt_test).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent();
+                intent.setClass(getApplicationContext(),TestMusicActiivty.class);
+                startActivity(intent);
+            }
+        });
 //        Intent intent = new Intent();
 //        intent.setClass(MainActivity.this, SessionActivity.class);
 //        startActivity(intent);

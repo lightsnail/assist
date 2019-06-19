@@ -7,9 +7,15 @@ public class Robot {
     private final String TAG = "Robot";
     private final Activity mActivity;
     private final RobotStatusCallBack mRobotStatusCallBack;
-    private Ear mEar;
-    private Mouth mMouth;
-    private Brain mBrain;
+    private Ear mEar;//wake up
+    private Mouth mMouth;//tts
+    private Brain mBrain;//
+
+    private MessageType currentMessageType = MessageType.Normal;
+    public enum MessageType{
+        Normal,//普通对话
+        Song,//播放歌曲的消息回调
+    }
 
     private String[] responseList = new String[]{
             "我在听",
@@ -26,7 +32,7 @@ public class Robot {
             "请再说一遍",
             "我听不见",
             "我听不清",
-            "可以大声一些吗",
+            "很抱歉我没听到",
     };
     private String[] cantHearAgainList = new String[]{
             "在忙吗",
@@ -44,10 +50,14 @@ public class Robot {
     public Robot(Activity activity,RobotStatusCallBack robotStatusCallBack) {
         this.mActivity = activity;
         this.mRobotStatusCallBack = robotStatusCallBack;
-        mBrain = new Brain();
+        mBrain = new Brain(activity);
         mMouth = new Mouth(activity, new Mouth.MouthStatusCallBack()  {
             @Override
             public void OnSpeakFinish() {
+                if(currentMessageType == MessageType.Song){
+                    mRobotStatusCallBack.OnRobotLeaving();
+                    return;
+                }
                 if(unHeardCount > 2){
                     mRobotStatusCallBack.OnRobotLeaving();
                 }else{
@@ -60,6 +70,7 @@ public class Robot {
             @Override
             public void BeWakeUp() {
                 unHeardCount = 0;
+                currentMessageType = MessageType.Normal;
                 String robotSay =  responseList[(int)(responseList.length*Math.random())];
                 mMouth.Speak(robotSay);
                 mRobotStatusCallBack.OnRobotBeWakeUp();
@@ -94,7 +105,8 @@ public class Robot {
         Log.e(TAG,"CurrentThread "+Thread.currentThread());
         mBrain.Thinking(result,new Brain.BrainStatusCallBack(){
             @Override
-            public void OnThinkingFinish(String thinkResult) {
+            public void OnThinkingFinish(String thinkResult,MessageType messageType) {
+                currentMessageType = messageType;
                 mMouth.Speak(thinkResult);
                 mRobotStatusCallBack.OnRobotSpeaking(thinkResult);
             }

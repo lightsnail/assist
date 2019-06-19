@@ -1,8 +1,11 @@
 package com.warm.tect.lightsnail.robot;
 
+import android.content.Context;
 import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Message;
+
+import com.lightsnail.music_module.LightSnailMusicManager;
 
 import org.json.JSONObject;
 
@@ -12,23 +15,26 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Brain {
-    private static String APIKEY = "e3d8ed67b2d34525a4c9c805c81f54d4";
+    private   Context mContext;
     private Handler handler;
     private HandlerThread mHandlerThread;
     private Runnable mRunnable;
     private Handler mainHandler ;//将思考结果返回到主线程UI使用
     private BrainStatusCallBack mBrainStatusCallBack;//
 
-    public Brain(){
+    public Brain(Context context){
+        mContext = context;
         mainHandler = new Handler(){
             @Override
             public void handleMessage(Message msg) {
                 super.handleMessage(msg);
                 String result = msg.obj.toString();
                 if(mBrainStatusCallBack != null){
-                    mBrainStatusCallBack.OnThinkingFinish(result);
+                    mBrainStatusCallBack.OnThinkingFinish(result,Robot.MessageType.Normal);
                 }
             }
         };
@@ -39,52 +45,23 @@ public class Brain {
 
 
     }
-    public static String GetString(String question){
-        String out = null;
-        try {
-            String info = URLEncoder.encode(question,"utf-8");
-            URL url = new URL("http://www.tuling123.com/openapi/api?key="
-                    + APIKEY + "&info=" + info);
-            System.out.println(url);
-            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setConnectTimeout(10 * 1000);
-            connection.setRequestMethod("GET");
-            int code = connection.getResponseCode();
-            if (code == 200){
-                InputStream inputStream = connection.getInputStream();
-                String result = StreamToString(inputStream);
-                JSONObject object = new JSONObject(result);
-                out = object.getString("text");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return out;
-    }
-    public static String StreamToString(InputStream in) {
-        String result = "";
-        try {
-            ByteArrayOutputStream out = new ByteArrayOutputStream();
-            byte[] buffer = new byte[1024];
-            int length = 0;
-            while ((length = in.read(buffer)) != -1) {
-                out.write(buffer, 0, length);
-                out.flush();
-            }
-            result = new String(out.toByteArray(), "utf-8");
-            out.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return result;
-    }
 
     public void Thinking(final String request,final BrainStatusCallBack brainStatusCallBack) {
         this.mBrainStatusCallBack = brainStatusCallBack;
+
+        //本地判断，若本地判断成功，则不访问云端
+        if(RegularExpression.checkSuccess(request,brainStatusCallBack)){
+            return ;
+        }
+
+        //云端判断
         mRunnable = new Runnable() {
             @Override
             public void run() {
-                String  thinkingResult =  GetString(request);
+                //String  thinkingResult =  TulinRobot_V1.GetCloudResult(request);
+                String  thinkingResult =  TulinRobot_V2.GetCloudResult(request);
+                thinkingResult= thinkingResult.replaceAll("图灵机器人","小爱机器人");
+                thinkingResult= thinkingResult.replaceAll("图灵","小爱");
                 Message message = mainHandler.obtainMessage();
                 message.obj = thinkingResult;
                 message.sendToTarget();
@@ -95,6 +72,26 @@ public class Brain {
     }
 
     public interface BrainStatusCallBack {
-        void OnThinkingFinish(String thinkResult);
+        void OnThinkingFinish(String thinkResult,Robot.MessageType messageType);
+    }
+    static class RegularExpression{
+
+        public static final String P_COMM = "播放歌曲(\\S+)";
+        public static boolean checkSuccess(String requestString,BrainStatusCallBack brainStatusCallBack) {
+
+            Pattern p=Pattern.compile(P_COMM);
+            Matcher m=p.matcher(requestString);
+
+            if(m.find()){
+                String song = m.group(1);
+                LightSnailMusicManager.getInstance( ).playMusic(song);
+
+                String thinkingResult = "即将为您播放歌曲["+song+"]";
+                brainStatusCallBack.OnThinkingFinish(thinkingResult,Robot.MessageType.Song);
+                return true;
+            }
+            return false;
+        }
+
     }
 }

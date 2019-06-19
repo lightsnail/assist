@@ -48,7 +48,7 @@ public class SessionManager {
             }
             @Override
             public void OnRobotLeaving() {
-                SpeakAside(robotName+"离开了,你需要重新唤醒她");
+                SpeakAside(robotName+"离开了,请对着屏幕说'小爱同学'来重新唤醒她");
             }
         });
     }
