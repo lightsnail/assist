@@ -19,7 +19,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-
         <service
             android:name="com.baidu.speech.VoiceRecognitionService"
             android:exported="false" />

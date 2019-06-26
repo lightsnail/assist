@@ -12,18 +12,23 @@ public class LightSnailMusicManager {
 
     private static LightSnailMusicManager sLightSnailMusicManager;
 
-    private HD mhd;
+    private MusicModule musicModule;
+   // private HD mhd;
     private Handler mHandler = new Handler();
-    public LightSnailMusicManager( ){
-        mhd = new HD();
+    public LightSnailMusicManager( Context context){
+       // mhd = new HD();
+        musicModule = new MusicModule(context);
     }
-    public static LightSnailMusicManager getInstance( ){
+    public static LightSnailMusicManager getInstance(Context context ){
         if(sLightSnailMusicManager == null){
-            sLightSnailMusicManager = new LightSnailMusicManager( );
+            sLightSnailMusicManager = new LightSnailMusicManager( context);
         }
         return sLightSnailMusicManager;
     }
 
+    public void stopMusic() {
+        musicModule.stop();
+    }
     public void playMusic(String song) {
         Utils.downloadJson("http://www.xiaoxina.cn/api.php?s="+song+"&num=1",jsonDownloadListener);
     }
@@ -64,7 +69,8 @@ public class LightSnailMusicManager {
             mHandler.post(new Runnable() {
                 @Override
                 public void run() {
-                    mhd.MusicChange(redirectUrl);
+//                    mhd.MusicPlay(redirectUrl);
+                    musicModule.MusicPlay(redirectUrl);
                 }
             });
         }

@@ -8,11 +8,14 @@ import com.yhd.hdmediaplayer.MediaPlayerHelper;
 public class HD {
     public HD(){
     }
-    public void MusicChange(final String url){
+    public void MusicPlay(final String url){
 
         //MediaPlayerHelper.getInstance().release();
         MediaPlayerHelper.getInstance().play( url);
 
+    }
+    public void MusicStop(){
+        MediaPlayerHelper.getInstance().release();
     }
 
 }

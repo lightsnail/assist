@@ -43,27 +43,37 @@ class MsgAdapter extends RecyclerView.Adapter<MsgAdapter.ViewHolder> {
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
+        private ViewGroup receive;
         private TextView tv_receive;
+        private ViewGroup send;
         private TextView tv_send;
         private TextView tv_aside;
-        private HashMap<Integer,TextView> map = new HashMap<Integer, TextView>();
+        private HashMap<Integer,View> map = new HashMap<Integer, View>();
         ViewHolder(View itemView) {
             super(itemView);
+            receive = (ViewGroup) itemView.findViewById(R.id.receive);
+            send = (ViewGroup) itemView.findViewById(R.id.send);
             tv_receive = (TextView) itemView.findViewById(R.id.tv_receive);
             tv_send = (TextView) itemView.findViewById(R.id.tv_send);
             tv_aside = (TextView)itemView.findViewById(R.id.tv_aside);
-            map.put(Msg.TYPE_RECEIVE,tv_receive);
-            map.put(Msg.TYPE_SEND,tv_send);
+            map.put(Msg.TYPE_RECEIVE,receive);
+            map.put(Msg.TYPE_SEND,send);
             map.put(Msg.TYPE_ASIDE,tv_aside);
         }
         public void OnlyShow(int type, String content) {
             for (Integer key : map.keySet()) {
-                TextView tv = map.get(key);
+                View view = map.get(key);
                 if(type == key){
-                    tv.setText(content);
-                    tv.setVisibility(View.VISIBLE);
+                    view.setVisibility(View.VISIBLE);
+                    if(view.getId() == R.id.receive){
+                        tv_receive.setText(content);
+                    }else  if(view.getId() == R.id.send){
+                        tv_send.setText(content);
+                    }else{
+                        tv_aside.setText(content);
+                    }
                 }else{
-                    tv.setVisibility(View.GONE);
+                   view.setVisibility(View.GONE);
                 }
                 //System.out.println(key);
             }

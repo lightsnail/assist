@@ -19,8 +19,7 @@
 
     <application
         android:allowBackup="true"
-        android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:label="@string/app_name" >
         <activity android:name="com.baidu.tts.sample.MainActivity">
             <!-- 这里改成MiniActivity 或者 SynthActivity 可以直接启动识别 -->
             <intent-filter>

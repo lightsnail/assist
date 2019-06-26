@@ -19,7 +19,7 @@ public class TestMusicActiivty extends Activity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LightSnailMusicManager.getInstance( ).playMusic("明天,你好");
+        LightSnailMusicManager.getInstance(this ).playMusic("明天,你好");
 
         setContentView(R.layout.test_music);
 //        findViewById(R.id.music_change).setOnClickListener(new View.OnClickListener(){

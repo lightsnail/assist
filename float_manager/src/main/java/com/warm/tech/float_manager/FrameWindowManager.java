@@ -134,7 +134,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 		mWindLayoutParams.flags |= 8;
 		mWindLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
 		mWindLayoutParams.x = (int) (mScreenWidth  *4f/5);
-		mWindLayoutParams.y = (int) (mScreenHeight *1f/5);
+		mWindLayoutParams.y = (int) (mScreenHeight *0);
 		
 		mWindLayoutParams.width = WindowManager.LayoutParams.WRAP_CONTENT;
 		mWindLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;

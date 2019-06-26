@@ -16,7 +16,7 @@ public class MusicModule    {
         this.mContext = context;
         mediaPlayer = new MediaPlayer();
     }
-    public  void MusicChange(final String musicurl) {
+    public  void MusicPlay(final String musicurl) {
             Log.e("LightSnail",musicurl);
 
         mediaPlayer.reset();
@@ -41,10 +41,10 @@ public class MusicModule    {
         }
     }
 
-    protected void stop() {
+    public void stop() {
         if (mediaPlayer != null) {
             mediaPlayer.stop();
-            mediaPlayer.release();
+            //mediaPlayer.release();
         }
     }
 
