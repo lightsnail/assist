@@ -38,6 +38,10 @@ public class Mouth {
     // 主控制类，所有合成控制方法从这个类开始
     protected MySyntherizer synthesizer;
 
+    public void release() {
+        synthesizer.release();
+    }
+
     public interface MouthStatusCallBack {
         void OnSpeakFinish();
     }

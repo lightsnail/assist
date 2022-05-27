@@ -12,6 +12,12 @@ public class Robot {
     private Brain mBrain;//
 
     private MessageType currentMessageType = MessageType.Normal;
+
+    public void release() {
+        mEar.release();
+        mMouth.release();
+    }
+
     public enum MessageType{
         Normal,//普通对话
         Song,//播放歌曲的消息回调

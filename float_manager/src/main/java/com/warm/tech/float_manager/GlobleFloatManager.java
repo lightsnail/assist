@@ -16,6 +16,7 @@ public class GlobleFloatManager {
     //成员变量
     private Context mContext;
     private FloatViewService mFloatViewService ;//浮动服务
+    private ServiceConnection  mServiceConnection;
     public static GlobleFloatManager GetInstance(Context context ,Activity activity){
         if(s_globle_float_manager == null){
             s_globle_float_manager= new GlobleFloatManager(context,activity);
@@ -26,7 +27,7 @@ public class GlobleFloatManager {
         this.mContext = context;
         Intent serviceIntent = new Intent(activity, FloatViewService.class);
         mContext. startService(serviceIntent);
-        ServiceConnection mServiceConnection = new ServiceConnection() {
+        mServiceConnection = new ServiceConnection() {
 
             @Override
             public void onServiceConnected(ComponentName name, IBinder service) {
@@ -41,7 +42,11 @@ public class GlobleFloatManager {
             }
 
         };
-        mContext.bindService(new Intent(mContext, FloatViewService.class),
-                mServiceConnection, Context.BIND_AUTO_CREATE);
+        mContext.bindService(new Intent(mContext, FloatViewService.class),  mServiceConnection, Context.BIND_AUTO_CREATE);
+    }
+
+    public void release() {
+        s_globle_float_manager = null;
+        mContext.unbindService(mServiceConnection);
     }
 }

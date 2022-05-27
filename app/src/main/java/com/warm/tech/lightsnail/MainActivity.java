@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -64,5 +65,8 @@ public class MainActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
        // mBaiduASR.onDestroy();
+        Log.e("LightSnail","onDestroy");
+        GlobleFloatManager.GetInstance(this,this).release() ;
+        mSessionManager.release();
     }
 }

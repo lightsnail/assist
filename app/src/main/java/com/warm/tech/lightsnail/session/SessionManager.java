@@ -62,4 +62,7 @@ public class SessionManager {
         mContentView.AsideSpeakMessage(speakAside);
     }
 
+    public void release() {
+        robot.release();
+    }
 }

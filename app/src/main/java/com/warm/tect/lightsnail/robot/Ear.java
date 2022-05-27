@@ -47,6 +47,11 @@ public class Ear {
     private int backTrackInMs = 0;
     private EarStatusCallBack mEarStatusCallBack;
 
+    public void release() {
+        myRecognizer.release();
+        myWakeup.release();
+    }
+
     public interface EarStatusCallBack {
         void BeWakeUp();//唤醒后的回调
         void UnHeard();//唤醒后没听到人声的回调

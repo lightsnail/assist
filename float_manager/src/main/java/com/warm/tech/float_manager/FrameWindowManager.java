@@ -130,7 +130,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 	private void show() {
 		mManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
 		mWindLayoutParams = new WindowManager.LayoutParams();
-		mWindLayoutParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ERROR  ;
+		mWindLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST  ;
 		mWindLayoutParams.flags |= 8;
 		mWindLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
 		mWindLayoutParams.x = (int) (mScreenWidth  *4f/5);
